@@ -20,41 +20,84 @@
   <rect width="1200" height="630" fill="url(#dots)"/>
 
   <!-- Icon -->
-  <text x="600" y="200" font-size="80" text-anchor="middle" fill="#22d3ee">⚡</text>
+  <text x="600" y="180" font-size="72" text-anchor="middle" fill="#22d3ee">&#9889;</text>
 
   <!-- Title -->
-  <text x="600" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="52" font-weight="800" text-anchor="middle" fill="url(#title)">Empire Ecosystem Map</text>
+  <text x="600" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="52" font-weight="800" text-anchor="middle" fill="url(#title)">Empire Ecosystem Map</text>
 
   <!-- Subtitle -->
-  <text x="600" y="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="24" text-anchor="middle" fill="#8896ab">UAE Property Hub &amp; Connected Systems</text>
+  <text x="600" y="325" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="22" text-anchor="middle" fill="#8896ab">Optimized Architecture &#8212; 9 Active Systems</text>
 
   <!-- Stats -->
-  <text x="600" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="18" text-anchor="middle" fill="#5c6b82">22 Systems  ·  4 AI Engines  ·  10 Marketing Agents  ·  15,957+ Properties</text>
+  <text x="600" y="375" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="16" text-anchor="middle" fill="#5c6b82">1 CF Worker  &#183;  2 AI Engines  &#183;  15,957+ Properties  &#183;  65+ Developers</text>
 
-  <!-- Node previews -->
-  <rect x="180" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#f55a5a" stroke-width="1.5" opacity="0.7"/>
-  <text x="240" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">WhatsApp Bot</text>
+  <!-- Column labels -->
+  <text x="138" y="430" font-family="system-ui" font-size="9" font-weight="700" text-anchor="middle" fill="#f55a5a" opacity="0.6" letter-spacing="1.5">LEAD CAPTURE</text>
+  <text x="390" y="430" font-family="system-ui" font-size="9" font-weight="700" text-anchor="middle" fill="#22d3ee" opacity="0.6" letter-spacing="1.5">ROUTING</text>
+  <text x="600" y="430" font-family="system-ui" font-size="9" font-weight="700" text-anchor="middle" fill="#2dd4a8" opacity="0.6" letter-spacing="1.5">CORE</text>
+  <text x="810" y="430" font-family="system-ui" font-size="9" font-weight="700" text-anchor="middle" fill="#b07af5" opacity="0.6" letter-spacing="1.5">OUTPUTS</text>
+  <text x="1062" y="430" font-family="system-ui" font-size="9" font-weight="700" text-anchor="middle" fill="#6b7a90" opacity="0.5" letter-spacing="1.5">PARKED</text>
 
-  <rect x="340" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#f5a623" stroke-width="1.5" opacity="0.7"/>
-  <text x="400" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">Groq AI</text>
+  <!-- Flow arrows between columns -->
+  <text x="264" y="498" font-size="14" text-anchor="middle" fill="#5c6b82" opacity="0.35">&#8594;</text>
+  <text x="495" y="498" font-size="14" text-anchor="middle" fill="#5c6b82" opacity="0.35">&#8594;</text>
+  <text x="705" y="498" font-size="14" text-anchor="middle" fill="#5c6b82" opacity="0.35">&#8594;</text>
+  <text x="915" y="498" font-size="14" text-anchor="middle" fill="#5c6b82" opacity="0.25">&#8594;</text>
 
-  <rect x="500" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#22d3ee" stroke-width="2" opacity="0.7"/>
-  <text x="560" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">Empire CC</text>
+  <!-- COL 0: Lead Capture -->
+  <rect x="60" y="450" width="156" height="42" rx="7" fill="#0f1520" stroke="#f55a5a" stroke-width="1.5" opacity="0.8"/>
+  <text x="138" y="475" font-size="10" text-anchor="middle" fill="#e8ecf4" font-family="system-ui" font-weight="600">Atlas2 WhatsApp</text>
 
-  <rect x="660" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#2dd4a8" stroke-width="1.5" opacity="0.7"/>
-  <text x="720" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">Property Hub</text>
+  <rect x="60" y="500" width="156" height="42" rx="7" fill="#0f1520" stroke="#f55a5a" stroke-width="1.5" opacity="0.8"/>
+  <text x="138" y="525" font-size="10" text-anchor="middle" fill="#e8ecf4" font-family="system-ui" font-weight="600">Seminar Registration</text>
 
-  <rect x="820" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#b07af5" stroke-width="1.5" opacity="0.7"/>
-  <text x="880" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">MCC Agents</text>
+  <rect x="60" y="550" width="156" height="42" rx="7" fill="#0f1520" stroke="#f55a5a" stroke-width="1.5" opacity="0.8"/>
+  <text x="138" y="575" font-size="10" text-anchor="middle" fill="#e8ecf4" font-family="system-ui" font-weight="600">Instantly.ai Outreach</text>
 
-  <!-- Connection lines between preview nodes -->
-  <line x1="300" y1="505" x2="340" y2="505" stroke="#4a9eff" stroke-width="1.5" opacity="0.4"/>
-  <line x1="460" y1="505" x2="500" y2="505" stroke="#4a9eff" stroke-width="1.5" opacity="0.4"/>
-  <line x1="620" y1="505" x2="660" y2="505" stroke="#4a9eff" stroke-width="1.5" opacity="0.4"/>
-  <line x1="780" y1="505" x2="820" y2="505" stroke="#b07af5" stroke-width="1.5" opacity="0.4"/>
+  <!-- COL 1: Routing & CRM -->
+  <rect x="312" y="462" width="156" height="42" rx="7" fill="#0f1520" stroke="#22d3ee" stroke-width="2" opacity="0.8"/>
+  <text x="390" y="487" font-size="10" text-anchor="middle" fill="#e8ecf4" font-family="system-ui" font-weight="600">Empire Command Center</text>
+
+  <rect x="312" y="520" width="156" height="42" rx="7" fill="#0f1520" stroke="#2dd4a8" stroke-width="1.5" opacity="0.8"/>
+  <text x="390" y="545" font-size="10" text-anchor="middle" fill="#e8ecf4" font-family="system-ui" font-weight="600">CRM Pipeline</text>
+
+  <!-- COL 2: Core Platform -->
+  <rect x="530" y="472" width="140" height="52" rx="8" fill="#0f1520" stroke="#2dd4a8" stroke-width="2" opacity="0.9"/>
+  <text x="600" y="494" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui" font-weight="700">UAE Property Hub</text>
+  <text x="600" y="510" font-size="8" text-anchor="middle" fill="#8896ab" font-family="system-ui">15,957+ properties</text>
+
+  <!-- COL 3: Content & Alerts -->
+  <rect x="740" y="450" width="140" height="42" rx="7" fill="#0f1520" stroke="#b07af5" stroke-width="1.5" opacity="0.8"/>
+  <text x="810" y="475" font-size="10" text-anchor="middle" fill="#e8ecf4" font-family="system-ui" font-weight="600">Content Workflow</text>
+
+  <rect x="740" y="500" width="140" height="42" rx="7" fill="#0f1520" stroke="#b07af5" stroke-width="1.5" opacity="0.8"/>
+  <text x="810" y="525" font-size="10" text-anchor="middle" fill="#e8ecf4" font-family="system-ui" font-weight="600">Dubai Social Videos</text>
+
+  <rect x="740" y="550" width="140" height="42" rx="7" fill="#0f1520" stroke="#2dd4a8" stroke-width="1.5" opacity="0.8"/>
+  <text x="810" y="575" font-size="10" text-anchor="middle" fill="#e8ecf4" font-family="system-ui" font-weight="600">Telegram Alerts</text>
+
+  <!-- COL 4: Parked (dimmed) -->
+  <rect x="984" y="450" width="156" height="42" rx="7" fill="#0f1520" stroke="#6b7a90" stroke-width="1" opacity="0.35"/>
+  <text x="1062" y="475" font-size="10" text-anchor="middle" fill="#6b7a90" font-family="system-ui" font-weight="500">Marketing CC</text>
+
+  <rect x="984" y="500" width="156" height="42" rx="7" fill="#0f1520" stroke="#6b7a90" stroke-width="1" opacity="0.35"/>
+  <text x="1062" y="525" font-size="10" text-anchor="middle" fill="#6b7a90" font-family="system-ui" font-weight="500">Launch Interceptor</text>
+
+  <rect x="984" y="550" width="156" height="42" rx="7" fill="#0f1520" stroke="#6b7a90" stroke-width="1" opacity="0.35"/>
+  <text x="1062" y="575" font-size="10" text-anchor="middle" fill="#6b7a90" font-family="system-ui" font-weight="500">Supplement E-com</text>
+
+  <!-- Connection lines -->
+  <line x1="216" y1="471" x2="312" y2="483" stroke="#f55a5a" stroke-width="1.2" opacity="0.35"/>
+  <line x1="216" y1="521" x2="312" y2="490" stroke="#f55a5a" stroke-width="1.2" opacity="0.35"/>
+  <line x1="216" y1="571" x2="312" y2="541" stroke="#f55a5a" stroke-width="1.2" opacity="0.35"/>
+  <line x1="468" y1="490" x2="530" y2="495" stroke="#4a9eff" stroke-width="1.5" opacity="0.4"/>
+  <line x1="468" y1="541" x2="530" y2="505" stroke="#4a9eff" stroke-width="1.2" opacity="0.35"/>
+  <line x1="670" y1="492" x2="740" y2="471" stroke="#b07af5" stroke-width="1.2" opacity="0.35"/>
+  <line x1="670" y1="500" x2="740" y2="571" stroke="#d4a82d" stroke-width="1.2" opacity="0.35"/>
+  <line x1="880" y1="521" x2="740" y2="521" stroke="#b07af5" stroke-width="1" opacity="0.2"/>
 
   <!-- Author -->
-  <text x="600" y="590" font-family="-apple-system, system-ui, sans-serif" font-size="14" text-anchor="middle" fill="#5c6b82">Dr. Siyamak Sasani · realedata.ai</text>
+  <text x="600" y="618" font-family="-apple-system, system-ui, sans-serif" font-size="13" text-anchor="middle" fill="#5c6b82">Dr. Siyamak Sasani  &#183;  realedata.ai</text>
 
   <rect x="0" y="626" width="1200" height="4" fill="url(#title)"/>
 </svg>
