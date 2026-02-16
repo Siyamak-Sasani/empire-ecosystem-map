@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#080c14"/>
+      <stop offset="100%" style="stop-color:#0f1520"/>
+    </linearGradient>
+    <linearGradient id="title" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2dd4a8"/>
+      <stop offset="50%" style="stop-color:#4a9eff"/>
+      <stop offset="100%" style="stop-color:#b07af5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1200" height="4" fill="url(#title)"/>
+
+  <!-- Grid dots -->
+  <pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse">
+    <circle cx="1" cy="1" r="1" fill="rgba(255,255,255,0.04)"/>
+  </pattern>
+  <rect width="1200" height="630" fill="url(#dots)"/>
+
+  <!-- Icon -->
+  <text x="600" y="200" font-size="80" text-anchor="middle" fill="#22d3ee">⚡</text>
+
+  <!-- Title -->
+  <text x="600" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="52" font-weight="800" text-anchor="middle" fill="url(#title)">Empire Ecosystem Map</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="24" text-anchor="middle" fill="#8896ab">UAE Property Hub &amp; Connected Systems</text>
+
+  <!-- Stats -->
+  <text x="600" y="430" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif" font-size="18" text-anchor="middle" fill="#5c6b82">22 Systems  ·  4 AI Engines  ·  10 Marketing Agents  ·  15,957+ Properties</text>
+
+  <!-- Node previews -->
+  <rect x="180" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#f55a5a" stroke-width="1.5" opacity="0.7"/>
+  <text x="240" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">WhatsApp Bot</text>
+
+  <rect x="340" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#f5a623" stroke-width="1.5" opacity="0.7"/>
+  <text x="400" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">Groq AI</text>
+
+  <rect x="500" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#22d3ee" stroke-width="2" opacity="0.7"/>
+  <text x="560" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">Empire CC</text>
+
+  <rect x="660" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#2dd4a8" stroke-width="1.5" opacity="0.7"/>
+  <text x="720" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">Property Hub</text>
+
+  <rect x="820" y="480" width="120" height="50" rx="8" fill="#0f1520" stroke="#b07af5" stroke-width="1.5" opacity="0.7"/>
+  <text x="880" y="510" font-size="11" text-anchor="middle" fill="#e8ecf4" font-family="system-ui">MCC Agents</text>
+
+  <!-- Connection lines between preview nodes -->
+  <line x1="300" y1="505" x2="340" y2="505" stroke="#4a9eff" stroke-width="1.5" opacity="0.4"/>
+  <line x1="460" y1="505" x2="500" y2="505" stroke="#4a9eff" stroke-width="1.5" opacity="0.4"/>
+  <line x1="620" y1="505" x2="660" y2="505" stroke="#4a9eff" stroke-width="1.5" opacity="0.4"/>
+  <line x1="780" y1="505" x2="820" y2="505" stroke="#b07af5" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Author -->
+  <text x="600" y="590" font-family="-apple-system, system-ui, sans-serif" font-size="14" text-anchor="middle" fill="#5c6b82">Dr. Siyamak Sasani · realedata.ai</text>
+
+  <rect x="0" y="626" width="1200" height="4" fill="url(#title)"/>
+</svg>

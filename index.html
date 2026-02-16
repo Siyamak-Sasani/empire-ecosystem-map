@@ -3,1604 +3,744 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>UAE Property Hub — Empire Ecosystem Map</title>
-<meta name="description" content="Interactive architecture map of the UAE Property Hub Empire Ecosystem — 20+ interconnected systems, 10 AI agents, 3 Cloudflare Workers, and 5 databases powering Dubai real estate intelligence.">
-<meta property="og:title" content="UAE Property Hub — Empire Ecosystem Map">
-<meta property="og:description" content="Interactive visual map of a $1.5M real estate SaaS ecosystem: 13,832+ properties, 65+ developers, AI-powered lead qualification.">
+<title>Empire Ecosystem Map — UAE Property Hub</title>
+
+<!-- Open Graph / Social Sharing -->
+<meta property="og:title" content="Empire Ecosystem Map — UAE Property Hub">
+<meta property="og:description" content="Interactive architecture map of 22 interconnected systems: AI engines, WhatsApp bots, marketing agents, property databases, and more. Built by Dr. Siyamak Sasani.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://siyamaksasani.github.io/empire-ecosystem-map/">
+<meta property="og:image" content="https://siyamaksasani.github.io/empire-ecosystem-map/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Empire Ecosystem Map — UAE Property Hub">
+<meta name="twitter:description" content="Interactive architecture map of 22 interconnected systems: AI engines, WhatsApp bots, marketing agents, property databases, and more.">
+<meta name="twitter:image" content="https://siyamaksasani.github.io/empire-ecosystem-map/og-image.png">
+
+<meta name="description" content="Interactive architecture map of 22 interconnected systems powering UAE Property Hub — AI engines, WhatsApp bots, marketing agents, property databases, and more.">
+<meta name="author" content="Dr. Siyamak Sasani">
+<meta name="theme-color" content="#080c14">
+
+<!-- Inline SVG Favicon -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080c14'/><text x='50' y='68' font-size='60' text-anchor='middle' fill='%2322d3ee'>⚡</text></svg>">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080c14;--bg2:#0f1520;--bg3:#161e2e;--border:#253048;
+  --text:#e8ecf4;--text2:#8896ab;--text3:#5c6b82;
+  --green:#2dd4a8;--blue:#4a9eff;--orange:#f5a623;--purple:#b07af5;
+  --red:#f55a5a;--gray:#6b7a90;--gold:#d4a82d;--cyan:#22d3ee;
+  --green-z:rgba(45,212,168,0.06);--blue-z:rgba(74,158,255,0.06);
+  --orange-z:rgba(245,166,35,0.06);--purple-z:rgba(176,122,245,0.06);
+  --red-z:rgba(245,90,90,0.06);--gold-z:rgba(212,168,45,0.06);
+  --gray-z:rgba(107,122,144,0.04);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow:hidden;height:100vh}
 
-  :root {
-    --bg: #0a0e17;
-    --bg2: #111827;
-    --bg3: #1a2236;
-    --border: #2a3550;
-    --text: #e2e8f0;
-    --text2: #94a3b8;
-    --text3: #64748b;
-    --green: #22c55e;
-    --green-dim: rgba(34,197,94,0.15);
-    --blue: #3b82f6;
-    --blue-dim: rgba(59,130,246,0.15);
-    --orange: #f59e0b;
-    --orange-dim: rgba(245,158,11,0.12);
-    --purple: #a855f7;
-    --purple-dim: rgba(168,85,247,0.12);
-    --red: #ef4444;
-    --red-dim: rgba(239,68,68,0.12);
-    --gray: #6b7280;
-    --gray-dim: rgba(107,114,128,0.12);
-    --yellow: #eab308;
-    --yellow-dim: rgba(234,179,8,0.12);
-    --cyan: #06b6d4;
-  }
+/* ── TOPBAR ── */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:200;height:48px;background:rgba(15,21,32,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:16px}
+.topbar h1{font-size:15px;font-weight:800;background:linear-gradient(90deg,var(--green),var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;white-space:nowrap}
+.stats{display:flex;gap:12px;font-size:11px;color:var(--text2);margin-left:8px}
+.stats b{color:var(--text);font-weight:700}
+.stats .sep{color:var(--border)}
+.spacer{flex:1}
+.search{background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:5px 10px;color:var(--text);font-size:11px;width:160px;outline:none;font-family:inherit}
+.search:focus{border-color:var(--blue)}
+.tabs{display:flex;gap:1px;background:var(--bg);border-radius:6px;border:1px solid var(--border);padding:2px}
+.tab{background:none;border:none;color:var(--text3);padding:4px 10px;font-size:11px;border-radius:4px;cursor:pointer;font-family:inherit;font-weight:500}
+.tab.on{background:var(--blue);color:#fff}
+.tab:hover:not(.on){color:var(--text)}
+.tbtn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit}
+.tbtn:hover{background:var(--border);color:var(--text)}
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    overflow: hidden;
-    height: 100vh;
-    width: 100vw;
-  }
+/* ── CANVAS ── */
+.viewport{position:fixed;top:48px;left:0;right:0;bottom:0;overflow:hidden;cursor:grab}
+.viewport.dragging{cursor:grabbing}
+.world{position:absolute;transform-origin:0 0;will-change:transform}
 
-  /* ══════ TOP BAR ══════ */
-  .topbar {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: linear-gradient(180deg, var(--bg2) 0%, rgba(17,24,39,0.97) 100%);
-    border-bottom: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 20px; height: 52px;
-    backdrop-filter: blur(16px);
-  }
-  .topbar-left { display: flex; align-items: center; gap: 16px; }
-  .topbar h1 {
-    font-size: 16px; font-weight: 700;
-    background: linear-gradient(135deg, #22c55e, #3b82f6, #a855f7);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    letter-spacing: -0.3px; white-space: nowrap;
-  }
-  .topbar-stats {
-    display: flex; gap: 14px; font-size: 11px; color: var(--text2);
-  }
-  .topbar-stats span { display: flex; align-items: center; gap: 4px; white-space: nowrap; }
-  .topbar-stats .dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+/* ── SVG LAYER ── */
+svg.wires{position:absolute;top:0;left:0;overflow:visible;pointer-events:none;z-index:3}
+svg.wires path{fill:none;stroke-linecap:round}
+svg.wires .wire{stroke-width:3.5;opacity:0.38}
+svg.wires .wire:hover{opacity:0.8;stroke-width:5}
+svg.wires .wire.hl{opacity:0.9;stroke-width:5.5}
+svg.wires .wire.dim{opacity:0.05}
+svg.wires .arrow{stroke:none}
+svg.wires text{font-size:11px;font-family:inherit;font-weight:600;pointer-events:none}
+svg.wires .wire-label{transition:opacity 0.2s}
 
-  .controls {
-    display: flex; gap: 6px; align-items: center;
-  }
-  .btn {
-    background: var(--bg3); border: 1px solid var(--border); color: var(--text2);
-    padding: 5px 10px; border-radius: 6px; font-size: 11px; cursor: pointer;
-    transition: all 0.15s; display: flex; align-items: center; gap: 5px;
-    white-space: nowrap; font-family: inherit;
-  }
-  .btn:hover { background: var(--border); color: var(--text); }
-  .btn.primary { background: var(--blue); border-color: var(--blue); color: #fff; }
-  .btn.primary:hover { background: #2563eb; }
-  .btn svg { width: 14px; height: 14px; }
+@keyframes flowdot{0%{offset-distance:0%}100%{offset-distance:100%}}
 
-  /* ══════ CANVAS ══════ */
-  .canvas-container {
-    position: fixed; top: 52px; left: 0; right: 0; bottom: 0;
-    overflow: hidden; cursor: grab;
-  }
-  .canvas-container.dragging { cursor: grabbing; }
-  .canvas {
-    position: absolute;
-    transform-origin: 0 0;
-    width: 3400px; height: 2800px;
-    will-change: transform;
-  }
+/* ── ZONES ── */
+.zone{position:absolute;border-radius:20px;z-index:1;pointer-events:none}
+.zone-label{position:absolute;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:2px;opacity:0.35;z-index:2;pointer-events:none}
 
-  /* SVG lines */
-  .lines-layer {
-    position: absolute; top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none; z-index: 1;
-  }
-  .lines-layer path { stroke-width: 1.5; fill: none; }
-  .flow-line { stroke: var(--green); opacity: 0.25; }
-  .flow-line.blue { stroke: var(--blue); }
-  .flow-line.orange { stroke: var(--orange); }
-  .flow-line.purple { stroke: var(--purple); }
-  .flow-line.red { stroke: var(--red); }
-  .flow-line.yellow { stroke: var(--yellow); }
+/* ── COLUMN LABELS ── */
+.col-label{position:absolute;z-index:2;pointer-events:none;text-align:center}
+.col-label .col-title{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:3px;color:var(--text3);opacity:0.5}
+.col-label .col-arrow{font-size:18px;color:var(--text3);opacity:0.25;margin-top:2px}
 
-  /* Grid */
-  .grid-bg {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.03) 1px, transparent 0);
-    background-size: 40px 40px; z-index: 0;
-  }
+/* ── NODES ── */
+.card{position:absolute;z-index:10;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,opacity 0.25s;border-radius:14px;overflow:hidden}
+.card:hover{transform:translateY(-3px) scale(1.02);z-index:50}
+.card.hl{z-index:60;transform:translateY(-4px) scale(1.03)}
+.card.dim{opacity:0.12!important;pointer-events:none}
+.card-inner{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;height:100%;display:flex;flex-direction:column}
+.card.c-green .card-inner{border-color:rgba(45,212,168,0.35)}
+.card.c-green:hover .card-inner,.card.c-green.hl .card-inner{border-color:var(--green);box-shadow:0 0 30px rgba(45,212,168,0.15)}
+.card.c-blue .card-inner{border-color:rgba(74,158,255,0.35)}
+.card.c-blue:hover .card-inner,.card.c-blue.hl .card-inner{border-color:var(--blue);box-shadow:0 0 30px rgba(74,158,255,0.15)}
+.card.c-orange .card-inner{border-color:rgba(245,166,35,0.35)}
+.card.c-orange:hover .card-inner,.card.c-orange.hl .card-inner{border-color:var(--orange);box-shadow:0 0 30px rgba(245,166,35,0.15)}
+.card.c-purple .card-inner{border-color:rgba(176,122,245,0.35)}
+.card.c-purple:hover .card-inner,.card.c-purple.hl .card-inner{border-color:var(--purple);box-shadow:0 0 30px rgba(176,122,245,0.15)}
+.card.c-red .card-inner{border-color:rgba(245,90,90,0.35)}
+.card.c-red:hover .card-inner,.card.c-red.hl .card-inner{border-color:var(--red);box-shadow:0 0 30px rgba(245,90,90,0.15)}
+.card.c-gold .card-inner{border-color:rgba(212,168,45,0.35)}
+.card.c-gold:hover .card-inner,.card.c-gold.hl .card-inner{border-color:var(--gold);box-shadow:0 0 30px rgba(212,168,45,0.15)}
+.card.c-gray .card-inner{border-color:rgba(107,122,144,0.25);opacity:0.55}
+.card.c-hub .card-inner{border:2.5px solid var(--cyan);box-shadow:0 0 40px rgba(34,211,238,0.12)}
+.card.c-hub:hover .card-inner,.card.c-hub.hl .card-inner{box-shadow:0 0 60px rgba(34,211,238,0.22)}
 
-  /* ══════ NODES ══════ */
-  .node {
-    position: absolute;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    z-index: 10; cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
-    overflow: hidden;
-  }
-  .node:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-    z-index: 20;
-  }
-  .node.green { border-color: rgba(34,197,94,0.4); }
-  .node.green:hover { border-color: var(--green); box-shadow: 0 0 30px rgba(34,197,94,0.2); }
-  .node.blue { border-color: rgba(59,130,246,0.4); }
-  .node.blue:hover { border-color: var(--blue); box-shadow: 0 0 30px rgba(59,130,246,0.2); }
-  .node.orange { border-color: rgba(245,158,11,0.4); }
-  .node.orange:hover { border-color: var(--orange); box-shadow: 0 0 30px rgba(245,158,11,0.2); }
-  .node.purple { border-color: rgba(168,85,247,0.4); }
-  .node.purple:hover { border-color: var(--purple); box-shadow: 0 0 30px rgba(168,85,247,0.2); }
-  .node.red { border-color: rgba(239,68,68,0.4); }
-  .node.red:hover { border-color: var(--red); box-shadow: 0 0 30px rgba(239,68,68,0.2); }
-  .node.gray { border-color: rgba(107,114,128,0.3); opacity: 0.6; }
-  .node.gray:hover { opacity: 0.9; border-color: var(--gray); }
-  .node.yellow { border-color: rgba(234,179,8,0.4); }
-  .node.yellow:hover { border-color: var(--yellow); box-shadow: 0 0 30px rgba(234,179,8,0.2); }
-  .node.hub { border-width: 2px; border-color: var(--cyan); box-shadow: 0 0 40px rgba(6,182,212,0.15); }
-  .node.hub:hover { box-shadow: 0 0 60px rgba(6,182,212,0.3); }
-  .node.hub .node-icon { background: rgba(6,182,212,0.15); }
+.card-top{padding:14px 16px 10px;display:flex;align-items:center;gap:12px}
+.card-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;background:rgba(255,255,255,0.06)}
+.card-name{font-size:18px;font-weight:800;line-height:1.15}
+.card-sub{font-size:12px;color:var(--text2);margin-top:3px;line-height:1.3}
+.card-status{width:10px;height:10px;border-radius:50%;margin-left:auto;flex-shrink:0}
+.card-status.live{background:var(--green);box-shadow:0 0 8px rgba(45,212,168,0.5);animation:pulse 2s infinite}
+.card-status.dev{background:var(--orange);box-shadow:0 0 8px rgba(245,166,35,0.4)}
+.card-status.parked{background:var(--gray)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}
 
-  .node-header {
-    padding: 12px 14px 10px;
-    display: flex; align-items: center; gap: 10px;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-  }
-  .node-icon {
-    width: 32px; height: 32px; border-radius: 8px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; flex-shrink: 0;
-  }
-  .node.green .node-icon { background: var(--green-dim); }
-  .node.blue .node-icon { background: var(--blue-dim); }
-  .node.orange .node-icon { background: var(--orange-dim); }
-  .node.purple .node-icon { background: var(--purple-dim); }
-  .node.red .node-icon { background: var(--red-dim); }
-  .node.gray .node-icon { background: var(--gray-dim); }
-  .node.yellow .node-icon { background: var(--yellow-dim); }
+.card-stat{padding:0 16px 12px;font-size:11px;color:var(--text2);display:flex;gap:10px;flex-wrap:wrap}
+.card-stat .pill{background:rgba(255,255,255,0.05);padding:2px 8px;border-radius:4px;font-weight:500}
 
-  .node-title { font-size: 13px; font-weight: 700; line-height: 1.2; }
-  .node-subtitle { font-size: 10px; color: var(--text2); margin-top: 2px; }
-  .node-status {
-    width: 8px; height: 8px; border-radius: 50%;
-    margin-left: auto; flex-shrink: 0;
-    animation: pulse 2s infinite;
-  }
-  .node-status.live { background: var(--green); }
-  .node-status.dev { background: var(--orange); }
-  .node-status.parked { background: var(--gray); animation: none; }
+/* ── TOOLTIP ── */
+.tip{position:fixed;z-index:500;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:14px 18px;max-width:360px;font-size:12px;line-height:1.6;color:var(--text2);pointer-events:none;opacity:0;transition:opacity 0.15s;box-shadow:0 12px 40px rgba(0,0,0,0.5)}
+.tip.show{opacity:1}
+.tip strong{color:var(--text);font-weight:700;display:block;margin-bottom:4px;font-size:13px}
+.tip .tip-tags{margin-top:6px;display:flex;flex-wrap:wrap;gap:4px}
+.tip .tt{background:rgba(74,158,255,0.12);color:var(--blue);padding:1px 6px;border-radius:3px;font-size:10px;font-weight:600}
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
+/* ── WIRE TOOLTIP ── */
+.wire-tip{position:fixed;z-index:500;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-size:11px;font-weight:600;color:var(--text);pointer-events:none;opacity:0;transition:opacity 0.15s;white-space:nowrap}
+.wire-tip.show{opacity:1}
 
-  .node-body {
-    padding: 0 14px;
-    font-size: 11px; color: var(--text2); line-height: 1.5;
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.35s ease;
-  }
-  .node.expanded .node-body { max-height: 600px; padding: 10px 14px 12px; }
+/* ── DETAIL PANEL ── */
+.dpanel{position:fixed;top:48px;right:-440px;width:420px;bottom:0;z-index:150;background:var(--bg2);border-left:1px solid var(--border);transition:right 0.3s;overflow-y:auto}
+.dpanel.open{right:0}
+.dp-head{padding:20px 24px 14px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:2}
+.dp-close{position:absolute;top:14px;right:14px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);width:28px;height:28px;border-radius:6px;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center}
+.dp-close:hover{color:var(--text);background:var(--border)}
+.dp-title{font-size:20px;font-weight:800}
+.dp-sub{font-size:12px;color:var(--text2);margin-top:4px}
+.dp-body{padding:20px 24px 40px}
+.dp-sec{margin-bottom:22px}
+.dp-sec h4{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);font-weight:700;margin-bottom:8px}
+.dp-sec p{font-size:12px;line-height:1.65;color:var(--text2)}
+.dp-row{display:flex;justify-content:space-between;padding:5px 0;font-size:12px;border-bottom:1px solid rgba(255,255,255,0.03)}
+.dp-row .dk{color:var(--text2)}.dp-row .dv{color:var(--text);font-weight:600;font-family:monospace;font-size:11px}
+.dp-tag{display:inline-block;background:rgba(74,158,255,0.12);color:var(--blue);padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;margin:2px}
+.dp-agent{padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.03);font-size:12px}
+.dp-agent b{color:var(--text)}
+.dp-conn{padding:4px 0;font-size:11px;color:var(--text2)}
+.dp-conn::before{content:'\2192';color:var(--cyan);margin-right:6px}
 
-  .tag {
-    display: inline-block; padding: 2px 7px; border-radius: 4px;
-    font-size: 10px; margin: 2px 2px 2px 0; font-weight: 500;
-  }
-  .tag.stack { background: rgba(59,130,246,0.15); color: #60a5fa; }
-  .tag.db { background: rgba(168,85,247,0.15); color: #c084fc; }
-  .tag.api { background: rgba(34,197,94,0.15); color: #4ade80; }
-  .tag.ai { background: rgba(245,158,11,0.15); color: #fbbf24; }
-  .tag.infra { background: rgba(239,68,68,0.15); color: #f87171; }
-  .tag.port { background: rgba(6,182,212,0.15); color: #22d3ee; }
-  .tag.file { background: rgba(107,114,128,0.15); color: #9ca3af; }
+/* ── FLOW PANEL ── */
+.flows{position:fixed;bottom:16px;right:16px;z-index:200;background:rgba(15,21,32,0.92);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:14px;padding:14px 18px;max-width:420px;font-size:11px}
+.flows.shut .flows-body{display:none}
+.flows.shut{padding:10px 14px}
+.flows-head{cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:12px;user-select:none}
+.flows.shut .flows-head{margin-bottom:0}
+.flows-body{margin-top:8px}
+.fi{padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:color 0.15s;display:flex;align-items:flex-start;gap:8px}
+.fi:last-child{border:none}
+.fi:hover{color:var(--cyan)}
+.fi-n{min-width:20px;height:20px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--cyan);flex-shrink:0}
 
-  .module-list { display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px; }
+/* ── LEGEND ── */
+.legend{position:fixed;bottom:16px;left:16px;z-index:200;background:rgba(15,21,32,0.92);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:14px;padding:14px 18px;font-size:11px;max-width:280px}
+.legend.shut .legend-body{display:none}
+.legend.shut{padding:10px 14px}
+.legend-head{cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:12px;user-select:none}
+.legend.shut .legend-head{margin-bottom:0}
+.legend-body{margin-top:8px}
+.lr{display:flex;align-items:center;gap:8px;padding:2px 0}
+.ld{width:10px;height:10px;border-radius:3px;flex-shrink:0}
 
-  /* ══════ CLUSTER ══════ */
-  .cluster-label {
-    position: absolute; font-size: 11px; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 1.5px;
-    color: var(--text2); opacity: 0.35; z-index: 5; pointer-events: none;
-  }
-  .cluster-bg {
-    position: absolute;
-    border: 1px dashed rgba(255,255,255,0.05);
-    border-radius: 16px; background: rgba(255,255,255,0.008);
-    z-index: 2; pointer-events: none;
-  }
-
-  /* ══════ DETAIL PANEL ══════ */
-  .detail-panel {
-    position: fixed; top: 52px; right: -460px; width: 440px;
-    bottom: 0; z-index: 90;
-    background: var(--bg2); border-left: 1px solid var(--border);
-    transition: right 0.3s ease; overflow-y: auto;
-  }
-  .detail-panel.open { right: 0; }
-  .detail-panel-header {
-    padding: 20px 24px 16px;
-    border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; background: var(--bg2); z-index: 2;
-  }
-  .detail-panel-close {
-    position: absolute; top: 14px; right: 14px;
-    background: var(--bg3); border: 1px solid var(--border); color: var(--text2);
-    width: 28px; height: 28px; border-radius: 6px; cursor: pointer;
-    font-size: 16px; display: flex; align-items: center; justify-content: center;
-  }
-  .detail-panel-close:hover { color: var(--text); background: var(--border); }
-  .dp-badge {
-    display: inline-block; padding: 3px 8px; border-radius: 4px;
-    font-size: 10px; font-weight: 600; margin-bottom: 8px;
-  }
-  .detail-panel-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .detail-panel-subtitle { font-size: 12px; color: var(--text2); line-height: 1.5; }
-  .detail-panel-body { padding: 20px 24px 40px; }
-  .ds { margin-bottom: 24px; }
-  .ds h3 {
-    font-size: 10px; text-transform: uppercase; letter-spacing: 1.2px;
-    color: var(--text3); margin-bottom: 10px; font-weight: 700;
-    display: flex; align-items: center; gap: 6px;
-  }
-  .ds h3::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  .ds p { font-size: 13px; line-height: 1.7; color: var(--text2); }
-  .ds .kv {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 7px 0; font-size: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-  .ds .kv:last-child { border: none; }
-  .ds .k { color: var(--text2); }
-  .ds .v { color: var(--text); font-weight: 600; font-family: 'SF Mono', Monaco, 'Fira Code', monospace; font-size: 11px; text-align: right; max-width: 60%; }
-  .ds .item {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 8px 0; font-size: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-  }
-  .ds .item:last-child { border: none; }
-  .ds .item-dot {
-    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 4px;
-  }
-  .ds .item-title { font-weight: 600; color: var(--text); }
-  .ds .item-desc { color: var(--text2); margin-top: 2px; font-size: 11px; line-height: 1.5; }
-  .ds .file-tree {
-    font-family: 'SF Mono', Monaco, monospace; font-size: 11px;
-    background: var(--bg); border-radius: 8px; padding: 12px 14px;
-    line-height: 1.8; color: var(--text2);
-  }
-  .ds .file-tree .dir { color: var(--blue); }
-  .ds .file-tree .file { color: var(--text2); }
-  .ds .file-tree .highlight { color: var(--green); font-weight: 600; }
-  .ds .env-list {
-    display: flex; flex-wrap: wrap; gap: 4px;
-  }
-
-  /* ══════ LEGEND ══════ */
-  .legend {
-    position: fixed; bottom: 16px; left: 16px; z-index: 100;
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 12px; padding: 14px 18px;
-    font-size: 11px; backdrop-filter: blur(12px);
-    max-width: 300px; transition: all 0.3s;
-  }
-  .legend.collapsed { padding: 10px 14px; }
-  .legend.collapsed .legend-body { display: none; }
-  .legend-toggle {
-    cursor: pointer; display: flex; justify-content: space-between;
-    align-items: center; margin-bottom: 8px;
-    font-weight: 600; font-size: 12px; user-select: none;
-  }
-  .legend.collapsed .legend-toggle { margin-bottom: 0; }
-  .legend-row { display: flex; align-items: center; gap: 8px; padding: 3px 0; }
-  .legend-dot { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
-  .legend-section { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
-  .legend-section-title { font-weight: 600; color: var(--text); margin-bottom: 4px; }
-
-  /* ══════ FLOW PANEL ══════ */
-  .flow-panel {
-    position: fixed; bottom: 16px; right: 16px; z-index: 100;
-    background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 12px; padding: 14px 18px;
-    font-size: 11px; max-width: 380px; backdrop-filter: blur(12px);
-  }
-  .flow-panel.collapsed .flow-body { display: none; }
-  .flow-panel.collapsed { padding: 10px 14px; }
-  .flow-toggle {
-    cursor: pointer; display: flex; justify-content: space-between;
-    align-items: center; margin-bottom: 8px;
-    font-weight: 600; font-size: 12px; user-select: none;
-  }
-  .flow-panel.collapsed .flow-toggle { margin-bottom: 0; }
-  .flow-item {
-    padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-    cursor: pointer; transition: color 0.15s;
-  }
-  .flow-item:hover { color: var(--cyan); }
-  .flow-item:last-child { border: none; }
-  .flow-num {
-    display: inline-flex; align-items: center; justify-content: center;
-    width: 18px; height: 18px; border-radius: 50%;
-    background: var(--bg3); font-size: 10px; font-weight: 700;
-    margin-right: 6px; color: var(--cyan);
-  }
-
-  /* ══════ ZOOM ══════ */
-  .zoom-indicator {
-    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
-    z-index: 100; background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 8px; padding: 6px 14px; font-size: 11px;
-    color: var(--text2); pointer-events: none;
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .zoom-indicator.visible { opacity: 1; }
-
-  /* ══════ VIEW TABS ══════ */
-  .view-tabs {
-    display: flex; gap: 2px; background: var(--bg); border-radius: 8px; padding: 2px;
-    border: 1px solid var(--border);
-  }
-  .view-tab {
-    background: none; border: none; color: var(--text2);
-    padding: 5px 11px; border-radius: 6px; font-size: 11px;
-    cursor: pointer; font-weight: 500; transition: all 0.15s;
-    font-family: inherit;
-  }
-  .view-tab.active { background: var(--blue); color: #fff; }
-  .view-tab:hover:not(.active) { color: var(--text); }
-
-  /* ══════ SEARCH ══════ */
-  .search-box {
-    background: var(--bg); border: 1px solid var(--border);
-    border-radius: 6px; padding: 5px 10px 5px 28px;
-    color: var(--text); font-size: 11px; width: 170px;
-    outline: none; transition: border-color 0.2s; font-family: inherit;
-    position: relative;
-  }
-  .search-box:focus { border-color: var(--blue); }
-  .search-box::placeholder { color: var(--gray); }
-  .search-wrap { position: relative; display: flex; align-items: center; }
-  .search-wrap svg {
-    position: absolute; left: 8px; width: 13px; height: 13px;
-    color: var(--gray); pointer-events: none;
-  }
-
-  /* ══════ TOAST ══════ */
-  .toast {
-    position: fixed; top: 70px; right: 20px; z-index: 200;
-    background: var(--green); color: #fff; padding: 10px 18px;
-    border-radius: 8px; font-size: 12px; font-weight: 600;
-    transform: translateY(-20px); opacity: 0;
-    transition: all 0.3s ease;
-  }
-  .toast.show { transform: translateY(0); opacity: 1; }
-
-  /* ══════ KEYBOARD SHORTCUTS PANEL ══════ */
-  .shortcuts-panel {
-    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    z-index: 300; background: var(--bg2); border: 1px solid var(--border);
-    border-radius: 16px; padding: 24px 32px; min-width: 380px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    display: none;
-  }
-  .shortcuts-panel.show { display: block; }
-  .shortcuts-panel h2 { font-size: 16px; margin-bottom: 16px; font-weight: 700; }
-  .shortcut-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 6px 0; font-size: 12px;
-  }
-  .shortcut-key {
-    background: var(--bg3); border: 1px solid var(--border);
-    padding: 2px 8px; border-radius: 4px; font-family: monospace;
-    font-size: 11px; color: var(--text);
-  }
-  .overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-    z-index: 250; display: none;
-  }
-  .overlay.show { display: block; }
-
-  /* ══════ PRINT / PDF ══════ */
-  .print-view {
-    display: none;
-  }
-
-  @media print {
-    body { overflow: visible !important; background: #fff !important; color: #000 !important; }
-    .topbar, .legend, .flow-panel, .zoom-indicator, .detail-panel,
-    .canvas-container, .toast, .shortcuts-panel, .overlay { display: none !important; }
-    .print-view {
-      display: block !important;
-      background: #fff; color: #000;
-      padding: 20px 30px; font-size: 11px;
-    }
-    .print-view h1 {
-      font-size: 22px; font-weight: 800; margin-bottom: 4px;
-      color: #000; -webkit-text-fill-color: #000;
-      background: none;
-    }
-    .print-view .print-subtitle { color: #666; font-size: 12px; margin-bottom: 16px; }
-    .print-view .print-stats {
-      display: flex; gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
-    }
-    .print-view .print-stat {
-      background: #f3f4f6; padding: 8px 14px; border-radius: 6px;
-      font-size: 11px;
-    }
-    .print-view .print-stat strong { font-weight: 700; }
-    .print-view h2 {
-      font-size: 15px; font-weight: 700; margin: 20px 0 10px;
-      padding-bottom: 6px; border-bottom: 2px solid #e5e7eb;
-      page-break-after: avoid;
-    }
-    .print-view .print-node {
-      page-break-inside: avoid;
-      border: 1px solid #e5e7eb; border-radius: 8px;
-      padding: 12px 16px; margin-bottom: 10px;
-    }
-    .print-view .print-node-header {
-      display: flex; align-items: center; gap: 8px; margin-bottom: 8px;
-    }
-    .print-view .print-node-icon {
-      font-size: 16px;
-    }
-    .print-view .print-node-title { font-size: 13px; font-weight: 700; }
-    .print-view .print-node-sub { font-size: 10px; color: #666; }
-    .print-view .print-node-status {
-      margin-left: auto; font-size: 9px; padding: 2px 8px;
-      border-radius: 10px; font-weight: 600;
-    }
-    .print-view .status-live { background: #dcfce7; color: #166534; }
-    .print-view .status-dev { background: #fef9c3; color: #854d0e; }
-    .print-view .status-parked { background: #f3f4f6; color: #6b7280; }
-    .print-view .print-desc { font-size: 11px; color: #374151; line-height: 1.6; margin-bottom: 8px; }
-    .print-view .print-kv-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4px 16px;
-      font-size: 10px; margin-bottom: 8px;
-    }
-    .print-view .print-kv {
-      display: flex; justify-content: space-between; padding: 3px 0;
-      border-bottom: 1px solid #f3f4f6;
-    }
-    .print-view .print-k { color: #6b7280; }
-    .print-view .print-v { font-weight: 600; color: #111; font-family: monospace; font-size: 10px; }
-    .print-view .print-modules {
-      display: flex; flex-wrap: wrap; gap: 3px;
-    }
-    .print-view .print-mod {
-      background: #f3f4f6; padding: 2px 7px; border-radius: 3px;
-      font-size: 9px; color: #374151;
-    }
-    .print-view .print-agent {
-      padding: 4px 0; font-size: 10px;
-      border-bottom: 1px solid #f9fafb;
-    }
-    .print-view .print-agent strong { color: #111; }
-    .print-view .print-conn { font-size: 10px; color: #6b7280; padding: 2px 0; }
-    .print-view .print-flows { margin-top: 16px; }
-    .print-view .print-flow {
-      padding: 6px 0; border-bottom: 1px solid #f3f4f6;
-      font-size: 11px;
-    }
-    .print-view .print-flow-num {
-      display: inline-block; width: 18px; height: 18px;
-      background: #f3f4f6; border-radius: 50%; text-align: center;
-      line-height: 18px; font-size: 10px; font-weight: 700;
-      margin-right: 6px;
-    }
-    .print-view .print-footer {
-      margin-top: 24px; padding-top: 12px; border-top: 1px solid #e5e7eb;
-      font-size: 9px; color: #9ca3af; text-align: center;
-    }
-  }
-
-  /* Responsive */
-  @media (max-width: 1200px) {
-    .topbar-stats { display: none; }
-  }
-  @media (max-width: 900px) {
-    .topbar h1 { font-size: 14px; }
-    .detail-panel { width: 100%; right: -100%; }
-  }
+.zoom-ind{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:200;background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:4px 12px;font-size:11px;color:var(--text2);opacity:0;transition:opacity 0.3s;pointer-events:none}
+.zoom-ind.show{opacity:1}
 </style>
 </head>
 <body>
 
-<!-- ══════ TOP BAR ══════ -->
 <div class="topbar">
-  <div class="topbar-left">
-    <h1>UAE Property Hub — Empire Ecosystem</h1>
-    <div class="topbar-stats">
-      <span><span class="dot" style="background:var(--green)"></span> 15 Active</span>
-      <span><span class="dot" style="background:var(--blue)"></span> 3 Workers</span>
-      <span><span class="dot" style="background:var(--orange)"></span> 4 AI Engines</span>
-      <span><span class="dot" style="background:var(--purple)"></span> 10 MCC Agents</span>
-      <span>13,832+ Properties</span>
-      <span>5 Databases</span>
-    </div>
+  <h1>Empire Ecosystem</h1>
+  <div class="stats">
+    <span><b>15</b> Active Systems</span><span class="sep">|</span>
+    <span><b>3</b> CF Workers</span><span class="sep">|</span>
+    <span><b>4</b> AI Engines</span><span class="sep">|</span>
+    <span><b>10</b> MCC Agents</span><span class="sep">|</span>
+    <span><b>15,957+</b> Properties</span><span class="sep">|</span>
+    <span><b>5</b> Databases</span>
   </div>
-  <div class="controls">
-    <div class="search-wrap">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-      <input class="search-box" type="text" placeholder="Search..." id="searchInput" />
-    </div>
-    <div class="view-tabs">
-      <button class="view-tab active" data-view="all">All</button>
-      <button class="view-tab" data-view="infra">Infra</button>
-      <button class="view-tab" data-view="ai">AI</button>
-      <button class="view-tab" data-view="leads">Leads</button>
-    </div>
-    <button class="btn" id="btnFit" title="Fit all nodes to screen (F)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-      Fit
-    </button>
-    <button class="btn" id="btnFullscreen" title="Toggle fullscreen (Ctrl+Shift+F)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
-      Fullscreen
-    </button>
-    <button class="btn" id="btnPDF" title="Export as PDF (Ctrl+P)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-      Export PDF
-    </button>
-    <button class="btn" id="btnHelp" title="Keyboard shortcuts (?)">?</button>
+  <div class="spacer"></div>
+  <input class="search" type="text" placeholder="Search systems..." id="search">
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-v="all">All</button>
+    <button class="tab" data-v="infra">Infra</button>
+    <button class="tab" data-v="ai">AI</button>
+    <button class="tab" data-v="leads">Leads</button>
+  </div>
+  <button class="tbtn" id="fitBtn">Fit</button>
+  <button class="tbtn" id="fsBtn">Fullscreen</button>
+  <button class="tbtn" id="pdfBtn">PDF</button>
+</div>
+
+<div class="viewport" id="vp">
+  <div class="world" id="world"></div>
+</div>
+
+<div class="tip" id="tip"></div>
+<div class="wire-tip" id="wtip"></div>
+<div class="zoom-ind" id="zi">100%</div>
+
+<div class="dpanel" id="dp">
+  <div class="dp-head">
+    <button class="dp-close" id="dpClose">&times;</button>
+    <div class="dp-title" id="dpTitle"></div>
+    <div class="dp-sub" id="dpSub"></div>
+  </div>
+  <div class="dp-body" id="dpBody"></div>
+</div>
+
+<div class="flows" id="flows">
+  <div class="flows-head" id="flowsHead">Data Flows (hover to trace) <span id="fArr">&#9660;</span></div>
+  <div class="flows-body">
+    <div class="fi" data-f="1"><span class="fi-n">1</span><span>WhatsApp Lead &#8594; Atlas2 &#8594; CRM &#8594; Empire CC &#8594; Property Hub</span></div>
+    <div class="fi" data-f="2"><span class="fi-n">2</span><span>Visitor &#8594; Empire Tracker &#8594; Empire CC &#8594; Telegram Alert</span></div>
+    <div class="fi" data-f="3"><span class="fi-n">3</span><span>Launch Interceptor &#8594; Detect Launch &#8594; Empire CC &#8594; All Agents</span></div>
+    <div class="fi" data-f="4"><span class="fi-n">4</span><span>MCC Agents &#8594; Platforms &#8594; Leads &#8594; Empire CC</span></div>
+    <div class="fi" data-f="5"><span class="fi-n">5</span><span>Ottawa-Dubai &#8594; CAD/AED Monitor &#8594; Content &#8594; MCC</span></div>
+    <div class="fi" data-f="6"><span class="fi-n">6</span><span>WhatsApp Groups &#8594; Atlas2 Ingestion &#8594; Property Hub DB &#8594; Admin Review</span></div>
   </div>
 </div>
 
-<!-- ══════ CANVAS ══════ -->
-<div class="canvas-container" id="canvasContainer">
-  <div class="canvas" id="canvas">
-    <div class="grid-bg"></div>
-    <svg class="lines-layer" id="linesLayer" xmlns="http://www.w3.org/2000/svg"></svg>
-  </div>
-</div>
-
-<!-- ══════ LEGEND ══════ -->
 <div class="legend" id="legend">
-  <div class="legend-toggle" onclick="toggleLegend()">
-    <span>Legend & Stats</span> <span id="legendArrow">&#9660;</span>
-  </div>
+  <div class="legend-head" id="legHead">Legend <span id="lArr">&#9660;</span></div>
   <div class="legend-body">
-    <div class="legend-row"><div class="legend-dot" style="background:var(--green)"></div> Production / Active</div>
-    <div class="legend-row"><div class="legend-dot" style="background:var(--blue)"></div> Cloudflare Workers</div>
-    <div class="legend-row"><div class="legend-dot" style="background:var(--orange)"></div> AI / Intelligence</div>
-    <div class="legend-row"><div class="legend-dot" style="background:var(--purple)"></div> Content / Marketing</div>
-    <div class="legend-row"><div class="legend-dot" style="background:var(--red)"></div> Revenue / Lead Systems</div>
-    <div class="legend-row"><div class="legend-dot" style="background:var(--yellow)"></div> Side Businesses</div>
-    <div class="legend-row"><div class="legend-dot" style="background:var(--gray)"></div> Parked / Archive</div>
-    <div class="legend-row"><div class="legend-dot" style="background:var(--cyan);border-radius:50%"></div> Central Hub</div>
-    <div class="legend-section">
-      <div class="legend-section-title">Infrastructure</div>
-      <div class="legend-row" style="color:var(--text2)">5 DBs (2 PG, 1 SQLite, 3 D1)</div>
-      <div class="legend-row" style="color:var(--text2)">3 Cloudflare Workers</div>
-      <div class="legend-row" style="color:var(--text2)">1 AWS Lightsail + Stockholm PG</div>
-      <div class="legend-row" style="color:var(--text2)">6 External APIs</div>
+    <div class="lr"><div class="ld" style="background:var(--green)"></div>Production / Active</div>
+    <div class="lr"><div class="ld" style="background:var(--blue)"></div>Cloudflare Workers</div>
+    <div class="lr"><div class="ld" style="background:var(--orange)"></div>AI / Intelligence</div>
+    <div class="lr"><div class="ld" style="background:var(--purple)"></div>Content / Marketing</div>
+    <div class="lr"><div class="ld" style="background:var(--red)"></div>Revenue / Lead Systems</div>
+    <div class="lr"><div class="ld" style="background:var(--gold)"></div>Side Businesses</div>
+    <div class="lr"><div class="ld" style="background:var(--gray)"></div>Parked / Archive</div>
+    <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border)">
+      <div class="lr" style="color:var(--text2)"><div class="ld" style="background:var(--green);border-radius:50%;width:8px;height:8px"></div>Live</div>
+      <div class="lr" style="color:var(--text2)"><div class="ld" style="background:var(--orange);border-radius:50%;width:8px;height:8px"></div>In Dev</div>
+      <div class="lr" style="color:var(--text2)"><div class="ld" style="background:var(--gray);border-radius:50%;width:8px;height:8px"></div>Parked</div>
+    </div>
+    <div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);color:var(--text3)">
+      Lines: <span style="color:var(--red)">&#9644;</span> leads &nbsp;<span style="color:var(--blue)">&#9644;</span> data &nbsp;<span style="color:var(--purple)">&#9644;</span> content &nbsp;<span style="color:var(--gold)">&#9644;</span> alerts
     </div>
   </div>
 </div>
-
-<!-- ══════ FLOWS ══════ -->
-<div class="flow-panel" id="flowPanel">
-  <div class="flow-toggle" onclick="toggleFlows()">
-    <span>Data Flows (hover to trace)</span> <span id="flowArrow">&#9660;</span>
-  </div>
-  <div class="flow-body">
-    <div class="flow-item" data-flow="1"><span class="flow-num">1</span>WhatsApp Lead &#8594; Atlas2 &#8594; CRM &#8594; Empire CC &#8594; Property Hub</div>
-    <div class="flow-item" data-flow="2"><span class="flow-num">2</span>Visitor &#8594; Empire Tracker &#8594; Empire CC &#8594; Telegram Alert</div>
-    <div class="flow-item" data-flow="3"><span class="flow-num">3</span>Launch Interceptor &#8594; Detect Launch &#8594; Empire CC &#8594; All Agents</div>
-    <div class="flow-item" data-flow="4"><span class="flow-num">4</span>MCC Agents &#8594; Social Platforms &#8594; Leads &#8594; Empire CC</div>
-    <div class="flow-item" data-flow="5"><span class="flow-num">5</span>Ottawa-Dubai &#8594; CAD/AED Monitor &#8594; Content &#8594; MCC</div>
-  </div>
-</div>
-
-<div class="zoom-indicator" id="zoomIndicator">100%</div>
-
-<!-- ══════ DETAIL PANEL ══════ -->
-<div class="detail-panel" id="detailPanel">
-  <div class="detail-panel-header">
-    <button class="detail-panel-close" onclick="closeDetail()">&#10005;</button>
-    <div id="detailBadge"></div>
-    <div class="detail-panel-title" id="detailTitle"></div>
-    <div class="detail-panel-subtitle" id="detailSubtitle"></div>
-  </div>
-  <div class="detail-panel-body" id="detailBody"></div>
-</div>
-
-<!-- ══════ SHORTCUTS ══════ -->
-<div class="overlay" id="overlay" onclick="toggleHelp()"></div>
-<div class="shortcuts-panel" id="shortcutsPanel">
-  <h2>Keyboard Shortcuts</h2>
-  <div class="shortcut-row"><span>Fit to screen</span><span class="shortcut-key">F</span></div>
-  <div class="shortcut-row"><span>Toggle fullscreen</span><span class="shortcut-key">Ctrl+Shift+F</span></div>
-  <div class="shortcut-row"><span>Export PDF</span><span class="shortcut-key">Ctrl+P</span></div>
-  <div class="shortcut-row"><span>Search</span><span class="shortcut-key">/</span></div>
-  <div class="shortcut-row"><span>Close panel</span><span class="shortcut-key">Esc</span></div>
-  <div class="shortcut-row"><span>Zoom in</span><span class="shortcut-key">+ or scroll</span></div>
-  <div class="shortcut-row"><span>Zoom out</span><span class="shortcut-key">- or scroll</span></div>
-  <div class="shortcut-row"><span>Show shortcuts</span><span class="shortcut-key">?</span></div>
-  <div style="margin-top:16px;font-size:11px;color:var(--text2)">Click & drag to pan. Scroll to zoom. Click node once to expand, twice for full details.</div>
-</div>
-
-<!-- ══════ TOAST ══════ -->
-<div class="toast" id="toast"></div>
-
-<!-- ══════ PRINT VIEW (hidden, rendered for PDF) ══════ -->
-<div class="print-view" id="printView"></div>
 
 <script>
-// ══════════════════════════════════════════
-// NODE DATA — FULL DETAIL FOR EVERY SYSTEM
-// ══════════════════════════════════════════
-const nodes = [
-  {
-    id: 'empire-cc', title: 'Empire Command Center', subtitle: 'Central Event Bus & Service Registry',
-    icon: '\u26A1', color: 'hub', status: 'live',
-    x: 1340, y: 900, w: 280, h: 80,
-    category: ['all','infra'],
-    tags: ['Cloudflare Worker', 'D1 Database', 'Cron: 5min'],
-    detail: {
-      description: 'The central nervous system of the entire Empire Ecosystem. Every service reports events here. It routes data between systems, runs health checks every 5 minutes via cron trigger, and maintains a real-time dashboard. Think of it as the event bus + service mesh for all 20+ systems.',
-      priority: 'Production',
-      infra: [
-        { k: 'Runtime', v: 'Cloudflare Worker (V8 isolate)' },
-        { k: 'Database', v: 'Cloudflare D1: empire-cc' },
-        { k: 'D1 ID', v: 'f6c89991-a14c-47dd-b33e-be2499790a9c' },
-        { k: 'URL', v: 'empire-command-center.siyamaksiyamaksiyamak.workers.dev' },
-        { k: 'Cron', v: '*/5 * * * * (every 5 min health check)' },
-        { k: 'Compat Date', v: '2024-01-01' },
-        { k: 'Compat Flags', v: 'nodejs_compat' },
-        { k: 'Project', v: '~/projects/empire-command-center/' },
-      ],
-      modules: ['Event Router', 'Health Monitor (cron)', 'Dashboard API', 'Service Registry', 'Dashboard App (React/Vite)'],
-      files: { type: 'monorepo', items: ['apps/api/ — Worker backend (TypeScript)', 'apps/dashboard/ — React dashboard (Vite)', 'packages/ — Shared libs', 'turbo.json — Turborepo config'] },
-      connections: ['All 8+ services report events here', 'Broadcasts events to all subscribers', 'Service binding from WhatsApp Automation Worker', 'Dashboard provides real-time system overview']
-    }
-  },
-  {
-    id: 'uae-property-hub', title: 'UAE Property Hub', subtitle: 'realedata.ai — $1.5M Flagship SaaS Platform',
-    icon: '\uD83C\uDFE2', color: 'green', status: 'live',
-    x: 680, y: 200, w: 300, h: 80,
-    category: ['all','infra','leads'],
-    tags: ['FastAPI', 'React', 'PostgreSQL', 'AWS'],
-    detail: {
-      description: 'The flagship product. A full-stack SaaS platform for Dubai real estate investment intelligence. 13,832+ properties from 65+ developers, powered by Atlas AI (125-point property scoring algorithm). Admin dashboard for property management, AI-powered chat assistant, Stripe billing, Google Maps integration. Target: $1.5M SaaS valuation.',
-      priority: 'Production',
-      infra: [
-        { k: 'Host', v: 'AWS Lightsail 65.0.250.47' },
-        { k: 'Region', v: 'ap-south-1 (Mumbai)' },
-        { k: 'Backend', v: 'FastAPI (Python)' },
-        { k: 'Frontend', v: 'React 18 + Vite + Tailwind CSS' },
-        { k: 'Database', v: 'PostgreSQL (AWS Stockholm)' },
-        { k: 'Properties', v: '13,832+' },
-        { k: 'Developers', v: '65+' },
-        { k: 'Domain', v: 'realedata.ai' },
-        { k: 'Deploy', v: 'Docker on Lightsail' },
-        { k: 'Project', v: '~/projects/uae-property-hub/' },
-      ],
-      modules: ['Atlas AI (125-point scoring)', 'Atlas Assistant (AI chat)', 'Atlas Matcher (property matching)', 'Bulk Upload (CSV/Excel)', 'Business Router', 'Scoring Engine', 'Context Engine (AI context)', 'Data Cleaner (AI)', 'DeepSeek Research (batch AI)', 'AI Orchestrator', 'Universal Parser', 'Broker Dashboard', 'Admin Dashboard'],
-      files: { type: 'fullstack', items: ['app/ — FastAPI application', 'app/routers/ — API endpoints (5 routers)', 'app/models/ — SQLAlchemy models', 'app/agents/ — AI agents', 'ai/ — AI modules (5 engines)', 'admin-dashboard/ — React frontend', 'alembic/ — DB migrations', 'analytics/ — Analytics engine'] },
-      envKeys: ['DATABASE_URL', 'OPENAI_API_KEY', 'GOOGLE_MAPS_API_KEY', 'STRIPE_SECRET_KEY', 'TELEGRAM_BOT_TOKEN', 'INGESTION_API_KEY'],
-      connections: ['OpenAI API (GPT-4 for Atlas AI)', 'Google Maps API (property mapping)', 'Stripe (subscription billing)', 'Telegram Bot (real-time alerts)', 'Empire Command Center (event reporting)', 'Empire Tracker (visitor pixel embedded)']
-    }
-  },
-  {
-    id: 'empire-tracker', title: 'Empire Tracker', subtitle: 'Visitor Behavioral Scoring & Analytics',
-    icon: '\uD83D\uDC41', color: 'blue', status: 'live',
-    x: 1640, y: 400, w: 260, h: 80,
-    category: ['all','infra','leads'],
-    tags: ['CF Worker', 'D1', 'Tracking Pixel'],
-    detail: {
-      description: 'A lightweight Cloudflare Worker that serves a tracking pixel (tracking.js / tracking.min.js) embedded on realedata.ai. Captures visitor behavior (page views, scroll depth, time on page, clicks), scores visitors by intent level, and reports high-intent visitors to Empire CC and Telegram for immediate follow-up.',
-      priority: 'Production',
-      infra: [
-        { k: 'Runtime', v: 'Cloudflare Worker' },
-        { k: 'Database', v: 'D1: empire-tracker-db' },
-        { k: 'D1 ID', v: '02c805d9-20fa-4a59-847f-1979a5174a4e' },
-        { k: 'URL', v: 'empire-tracker.siyamaksiyamaksiyamak.workers.dev' },
-        { k: 'Pixel', v: 'tracking.js + tracking.min.js' },
-        { k: 'Project', v: '~/projects/empire-tracker/' },
-      ],
-      modules: ['Tracking Pixel (vanilla JS)', 'Minified Pixel', 'Visitor Score Calculator', 'Behavioral Event Logger', 'High-Intent Alert Engine', 'Empire CC Reporter', 'Telegram Alert Sender'],
-      files: { type: 'worker', items: ['worker/ — CF Worker source (TypeScript)', 'pixel/ — Tracking pixel scripts', 'test/ — Test suite'] },
-      envKeys: ['EMPIRE_API_KEY', 'EMPIRE_API_URL', 'EMPIRE_ROUTER_KEY', 'TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID'],
-      connections: ['Empire Command Center (event reporting)', 'realedata.ai (pixel embedded)', 'Telegram (high-intent visitor alerts)']
-    }
-  },
-  {
-    id: 'whatsapp-automation', title: 'WhatsApp Automation', subtitle: 'Cloud API Webhook Relay Worker',
-    icon: '\u2601', color: 'blue', status: 'live',
-    x: 1640, y: 600, w: 260, h: 80,
-    category: ['all','infra','leads'],
-    tags: ['CF Worker', 'D1', 'Cloud API'],
-    detail: {
-      description: 'Cloudflare Worker that acts as the webhook endpoint for WhatsApp Cloud API (Meta Business). Receives incoming messages, stores in D1, and relays to the appropriate handler. Has a direct service binding to the Empire Command Center worker for low-latency event routing.',
-      priority: 'Production',
-      infra: [
-        { k: 'Runtime', v: 'Cloudflare Worker' },
-        { k: 'Database', v: 'D1: whatsapp-auto' },
-        { k: 'D1 ID', v: '6dbc4c8c-2019-49d1-9ff8-b10378112714' },
-        { k: 'API', v: 'WhatsApp Cloud API (Meta)' },
-        { k: 'Service Binding', v: 'EMPIRE -> empire-command-center' },
-        { k: 'Project', v: '~/projects/whatsapp-automation/' },
-      ],
-      modules: ['Webhook Receiver', 'Message Parser', 'D1 Storage Layer', 'Empire Service Binding', 'Property Hub API Client', 'Message Router'],
-      files: { type: 'worker', items: ['src/index.ts — Main worker entry', 'src/handlers/ — Message handlers', 'src/services/ — Business logic', 'src/db/ — D1 database layer', 'src/types/ — TypeScript types', 'src/utils/ — Utilities'] },
-      envKeys: ['WHATSAPP_TOKEN', 'WHATSAPP_VERIFY_TOKEN', 'WHATSAPP_PHONE_NUMBER_ID'],
-      connections: ['WhatsApp Cloud API (Meta Business)', 'Empire CC (service binding — zero-latency)', 'UAE Property Hub API (property matching)']
-    }
-  },
-  {
-    id: 'atlas2-whatsapp', title: 'Atlas2 WhatsApp Bot', subtitle: 'PRIMARY 24/7 Lead Qualifier — Baileys + Dual AI',
-    icon: '\uD83D\uDCAC', color: 'red', status: 'live',
-    x: 1640, y: 800, w: 280, h: 80,
-    category: ['all','ai','leads'],
-    tags: ['Node.js', 'Baileys', 'SQLite', 'Groq+Claude'],
-    detail: {
-      description: 'The crown jewel of lead qualification. A Node.js bot using Baileys (WhatsApp Web protocol — not Cloud API) for direct WhatsApp connection. Dual AI engine: Groq (llama-3.3-70b) for fast responses + Claude for complex reasoning. Handles text, voice (Whisper transcription), images, property search via NLP, CRM integration, proactive outreach (48hr follow-ups, broadcast campaigns, scheduled reminders). Detects Arabic/Farsi/English automatically. 166 tests across 4 suites.',
-      priority: 'Production',
-      infra: [
-        { k: 'Runtime', v: 'Node.js (ES Modules)' },
-        { k: 'Protocol', v: 'Baileys (WhatsApp Web)' },
-        { k: 'Port', v: '18790' },
-        { k: 'Database', v: 'SQLite WAL (better-sqlite3)' },
-        { k: 'DB Path', v: '~/.atlas2-whatsapp/conversations.db' },
-        { k: 'Session', v: '~/.atlas2-whatsapp/session/' },
-        { k: 'Primary AI', v: 'Groq llama-3.3-70b-versatile' },
-        { k: 'Fallback AI', v: 'Claude (Anthropic)' },
-        { k: 'Voice AI', v: 'Groq Whisper (transcription)' },
-        { k: 'Tests', v: '166 across 4 suites' },
-        { k: 'Project', v: '~/projects/atlas2-whatsapp/' },
-      ],
-      modules: ['ai-engine.js — Dual AI routing (Groq primary, Claude fallback)', 'property-search.js — NLP parser with 40+ area aliases, 20 sample fallback', 'outreach.js — 48hr follow-ups, broadcast campaigns, reminders', 'conversation.js — SQLite conversation store', 'voice.js — Groq Whisper transcription', 'crm.js — CRM API integration (Bearer: dubai2026roadshow)', 'language.js — AR/FA/EN auto-detection', 'intelligence.js — Lead scoring & intent analysis', 'gateway.js — WhatsApp connection manager', 'media.js — Image/document handler', 'group-context-buffer.js — Group chat context', 'topic-filter.js — Message filtering', 'sender-map.js — Contact management', 'ingestion-forwarder.js — Data pipeline', 'message-queue.js — Rate limiting'],
-      files: { type: 'app', items: ['src/index.js — Main pipeline entry', 'src/ — 15 modules (see above)', 'src/utils/ — Shared utilities', 'tests/ — 4 test suites (166 tests)', 'cli.js — CLI interface', 'exports/ — Data exports'] },
-      envKeys: ['GROQ_API_KEY', 'ANTHROPIC_API_KEY', 'OWNER_NUMBER', 'NOTIFICATION_NUMBER', 'INGESTION_API_URL', 'INGESTION_API_KEY'],
-      connections: ['Groq API (LLM + Whisper voice transcription)', 'Anthropic API (Claude fallback)', 'CRM API (Bearer token: dubai2026roadshow)', 'Ingestion API (lead data pipeline)', 'Empire CC (event reporting)']
-    }
-  },
-  {
-    id: 'atlas3-lead-agent', title: 'Atlas3 Lead Agent', subtitle: 'PARKED — Future Secondary Number Bot',
-    icon: '\uD83D\uDCAC', color: 'gray', status: 'parked',
-    x: 1960, y: 800, w: 240, h: 80,
-    category: ['all'],
-    tags: ['Node.js', 'Baileys', 'PARKED'],
-    detail: {
-      description: 'Planned secondary WhatsApp bot for a second phone number. Forked from Atlas2 architecture. Has a launchd plist configured for macOS auto-start. Currently parked — will be activated when a second WhatsApp Business number is needed for campaign segmentation or overflow.',
-      priority: 'Parked',
-      infra: [
-        { k: 'Runtime', v: 'Node.js (ES Modules)' },
-        { k: 'Status', v: 'PARKED — not running' },
-        { k: 'Auto-start', v: 'launchd plist: com.clawd.whatsapp.plist' },
-        { k: 'Project', v: '~/projects/atlas3-lead-agent/' },
-      ],
-      modules: ['Same architecture as Atlas2 (forked)', 'Deployment scripts ready', 'CLI interface'],
-      connections: ['Would connect to Empire CC when activated']
-    }
-  },
-  {
-    id: 'launch-interceptor', title: 'Launch Interceptor', subtitle: 'Predictive Market Intelligence & New Launch Detection',
-    icon: '\uD83D\uDE80', color: 'orange', status: 'dev',
-    x: 520, y: 900, w: 280, h: 80,
-    category: ['all','ai'],
-    tags: ['Python', 'Groq AI', 'Scrapers', 'Alerts'],
-    detail: {
-      description: 'Scrapes developer websites, press releases, and market sources to detect new Dubai property launches before public announcement. Uses Groq AI for content analysis and confidence scoring. Sends alerts via Telegram when high-confidence launches are detected. Configurable scan intervals and confidence thresholds.',
-      priority: 'Active Dev',
-      infra: [
-        { k: 'Stack', v: 'Python (pyproject.toml)' },
-        { k: 'AI', v: 'Groq (fast analysis)' },
-        { k: 'Scan Interval', v: 'Configurable (hours)' },
-        { k: 'High Confidence', v: 'Threshold configurable' },
-        { k: 'Medium Confidence', v: 'Threshold configurable' },
-        { k: 'Project', v: '~/projects/launch-interceptor/' },
-      ],
-      modules: ['Web Scrapers (multi-source)', 'Content Analyzers (AI-powered)', 'Confidence Scorer', 'Alert Engine (Telegram + Empire)', 'REST API Server', 'SQLite Database', 'Configuration Manager'],
-      files: { type: 'app', items: ['src/main.py — Entry point', 'src/scrapers/ — Web scraper modules', 'src/analyzers/ — AI analysis pipeline', 'src/alerts/ — Alert dispatch', 'src/api/ — REST API', 'src/config.py — Settings', 'src/database.py — Storage', 'tests/ — Test suite'] },
-      envKeys: ['EMPIRE_API_URL', 'EMPIRE_API_KEY', 'GROQ_API_KEY', 'TELEGRAM_BOT_TOKEN', 'TELEGRAM_CHAT_ID'],
-      connections: ['Empire Command Center (launch events)', 'Telegram (real-time alerts)', 'Groq API (content analysis)', 'MCC (distributes intel to marketing agents)']
-    }
-  },
-  {
-    id: 'clawd', title: 'Clawd', subtitle: 'AI Agent Framework — 4 Domain Specialists',
-    icon: '\uD83E\uDD16', color: 'orange', status: 'dev',
-    x: 200, y: 600, w: 280, h: 80,
-    category: ['all','ai'],
-    tags: ['4 Agents', 'Memory', 'Identity', 'Canvas'],
-    detail: {
-      description: 'Multi-agent AI framework with 4 specialized domain agents, each with its own persistent identity, memory store, heartbeat, and bootstrap configuration. Agents can be invoked independently or orchestrated together. Includes an HTML canvas for visual interactions and a content generation engine.',
-      priority: 'Active Dev',
-      infra: [
-        { k: 'Agents', v: '4 domain specialists' },
-        { k: 'Canvas', v: 'HTML-based UI' },
-        { k: 'Project', v: '~/projects/clawd/' },
-      ],
-      modules: ['Agent Runtime', 'Memory Store (per-agent)', 'Identity System', 'Heartbeat Monitor', 'Bootstrap Loader', 'Canvas UI (HTML)', 'Content Generator'],
-      agents: [
-        { name: 'Hub Agent', desc: 'UAE Property Hub operations — property insights, market analysis, platform optimization. Connected to realedata.ai data.' },
-        { name: 'Optical Agent', desc: 'Dubai Optical Company B2B corporate wellness outreach — corporate eyewear programs, health partnerships, employee wellness.' },
-        { name: 'ReLead Agent', desc: 'Lead generation & qualification specialist — scoring, nurturing sequences, conversion optimization across channels.' },
-        { name: 'Roadshow Agent', desc: 'March 2026 Dubai Investment Seminars — Sheraton Markham + Hilton Mississauga event planning, attendee management, content.' },
-      ],
-      files: { type: 'framework', items: ['agents/hub/ — Property Hub agent', 'agents/optical/ — Dubai Optical agent', 'agents/relead/ — Lead gen agent', 'agents/roadshow/ — Seminar agent', 'canvas/ — HTML canvas UI', 'content/ — Generated content', 'memory/ — Shared memory store'] },
-      connections: ['UAE Property Hub (Hub agent)', 'Dubai Optical (Optical agent)', 'Lead pipeline (ReLead agent)', 'March 2026 seminars (Roadshow agent)', 'Empire Command Center (agent events)', 'MCC (content distribution)']
-    }
-  },
-  {
-    id: 'ottawa-dubai', title: 'Ottawa-Dubai Arbitrage', subtitle: 'Cross-Border Content Engine & Currency Monitor',
-    icon: '\uD83C\uDF0D', color: 'orange', status: 'dev',
-    x: 200, y: 900, w: 280, h: 80,
-    category: ['all','ai'],
-    tags: ['Python', 'Currency', 'Content Gen', 'Leads'],
-    detail: {
-      description: 'Monitors CAD/AED exchange rates for favorable investment windows and generates targeted cross-border content for Canadian investors interested in Dubai real estate. Tracks favorable rates (configurable thresholds), generates LinkedIn/social content, monitors Canadian real estate market for comparison angles, and feeds content to MCC for multi-platform distribution.',
-      priority: 'Active Dev',
-      infra: [
-        { k: 'Stack', v: 'Python (pyproject.toml)' },
-        { k: 'Favorable Rate', v: 'CAD_AED_FAVORABLE_RATE (configurable)' },
-        { k: 'Strong Rate', v: 'CAD_AED_STRONG_RATE (configurable)' },
-        { k: 'Project', v: '~/projects/ottawa-dubai-arbitrage/' },
-      ],
-      modules: ['Currency Monitor (CAD/AED)', 'Content Generators (multi-format)', 'Market Monitors (CA + UAE)', 'Lead Trackers (cross-border)', 'Empire Integration', 'API Server', 'Template Engine', 'Cloudflare Worker (deployment)'],
-      files: { type: 'app', items: ['src/currency/ — Exchange rate monitoring', 'src/content/ — Content generation', 'src/market/ — Market data collectors', 'src/leads/ — Lead tracking', 'src/generators/ — Template generators', 'src/monitors/ — Market monitors', 'src/trackers/ — Behavioral trackers', 'src/empire.py — Empire CC integration', 'worker/ — CF Worker deployment', 'templates/ — Content templates'] },
-      envKeys: ['GROQ_API_KEY', 'EMPIRE_API_KEY', 'EMPIRE_API_URL', 'EXCHANGE_API_KEY', 'CAD_AED_FAVORABLE_RATE', 'CAD_AED_STRONG_RATE'],
-      connections: ['Empire Command Center (content events)', 'Exchange Rate API (currency data)', 'Groq API (content generation)', 'MCC (content distribution to all platforms)']
-    }
-  },
-  {
-    id: 'mcc', title: 'Marketing Command Center', subtitle: '10 AI Agents — Omnichannel Social Management',
-    icon: '\uD83D\uDCE2', color: 'purple', status: 'dev',
-    x: 200, y: 1200, w: 320, h: 80,
-    category: ['all','leads'],
-    tags: ['PostgreSQL', '10 Agents', 'Orchestrator', 'Analytics'],
-    detail: {
-      description: '10 specialized AI agents, each managing a social media platform or cross-cutting function. Centralized orchestrator coordinates campaigns across all channels. Market data scrapers feed real-time intel. Analytics engine tracks performance. PostgreSQL stores agent state, content queue, and analytics. Custom Claude Code skills (mcc, broadcast, agent-status, wake-agents) provide CLI management.',
-      priority: 'Active Dev',
-      infra: [
-        { k: 'Database', v: 'PostgreSQL: marketing_command_center' },
-        { k: 'Agents', v: '10 platform specialists' },
-        { k: 'CLI Skills', v: 'mcc, broadcast, wake-agents, agent-status' },
-        { k: 'Project', v: '~/projects/marketing-command-center/' },
-      ],
-      modules: ['Master Orchestrator', 'Market Data Scrapers', 'Analytics Engine', 'Content Queue', 'Shared Config (markets.json)', 'WhatsApp Integration'],
-      agents: [
-        { name: 'LinkedIn Agent', desc: 'B2B thought leadership, Canadian investor targeting, Dubai market insights. Long-form posts, articles, engagement.' },
-        { name: 'Instagram Agent', desc: 'Visual property showcases, Stories, Reels. High-impact imagery, area spotlights, lifestyle content.' },
-        { name: 'Facebook Agent', desc: 'Community building, Facebook Ads, Groups. Canadian diaspora targeting, event promotion, lead gen forms.' },
-        { name: 'Twitter/X Agent', desc: 'Real-time market commentary, breaking news, thread creation. Quick reactions to market moves and policy changes.' },
-        { name: 'TikTok Agent', desc: 'Short-form video content, trending sounds, property walkthroughs. Younger investor demographic targeting.' },
-        { name: 'YouTube Agent', desc: 'Long-form content: market analysis videos, property tours, investment guides. SEO-optimized descriptions.' },
-        { name: 'Analytics Agent', desc: 'Cross-platform performance tracking, engagement metrics, ROI analysis, A/B test insights, reporting.' },
-        { name: 'Content Factory Agent', desc: 'Central content generation engine. Creates base content that platform agents customize for their channels.' },
-        { name: 'Lead Capture Agent', desc: 'Cross-platform lead aggregation. Captures leads from all channels, scores them, routes to WhatsApp for qualification.' },
-      ],
-      files: { type: 'multiagent', items: ['agents/linkedin/ — LinkedIn specialist', 'agents/instagram/ — Instagram specialist', 'agents/facebook/ — Facebook specialist', 'agents/twitter/ — Twitter/X specialist', 'agents/tiktok/ — TikTok specialist', 'agents/youtube/ — YouTube specialist', 'agents/analytics/ — Analytics engine', 'agents/content-factory/ — Content generation', 'agents/lead-capture/ — Lead aggregation', 'master/ — Orchestrator', 'orchestrator/ — Campaign coordinator', 'scrapers/market-data/ — Market intel', 'analytics/ — Analytics pipeline', 'config/markets.json — Market config', 'shared/ — Shared utilities', 'whatsapp/ — WhatsApp bridge'] },
-      connections: ['Empire Command Center (campaign events)', 'LinkedIn, Instagram, Facebook, Twitter, TikTok, YouTube (publishing)', 'Ottawa-Dubai Arbitrage (content feed)', 'Launch Interceptor (market intel)', 'Atlas2 WhatsApp (lead handoff)', 'Dubai Social Videos (video content)']
-    }
-  },
-  {
-    id: 'dubai-social-videos', title: 'Dubai Social Videos', subtitle: 'Programmatic Video Generation (Remotion)',
-    icon: '\uD83C\uDFAC', color: 'purple', status: 'dev',
-    x: 580, y: 1200, w: 260, h: 80,
-    category: ['all'],
-    tags: ['Remotion', 'Node.js', 'React'],
-    detail: {
-      description: 'Generates social media videos programmatically using Remotion (React-based video framework). Creates property showcase videos, market update videos, area spotlight videos, and promotional content. Output feeds directly to MCC platform agents for distribution.',
-      priority: 'Development',
-      infra: [
-        { k: 'Stack', v: 'Remotion + React + TypeScript' },
-        { k: 'Output', v: 'MP4 videos for social platforms' },
-        { k: 'Project', v: '~/projects/dubai-social-videos/' },
-      ],
-      modules: ['Video Templates (React components)', 'Render Pipeline', 'Data-driven content injection', 'Multi-format output (9:16, 16:9, 1:1)'],
-      files: { type: 'app', items: ['src/ — React video components', 'public/ — Static assets', 'scripts/ — Render automation', 'out/ — Rendered outputs'] },
-      connections: ['MCC Content Factory (video distribution)', 'UAE Property Hub (property data for videos)']
-    }
-  },
-  {
-    id: 'supplement-ecommerce', title: 'Supplement E-commerce', subtitle: 'FastAPI + PostgreSQL + Redis Full-Stack Store',
-    icon: '\uD83D\uDC8A', color: 'yellow', status: 'dev',
-    x: 1800, y: 1200, w: 260, h: 80,
-    category: ['all'],
-    tags: ['FastAPI', 'PostgreSQL', 'Redis', 'Docker', 'R2'],
-    detail: {
-      description: 'Full e-commerce backend for supplement products. FastAPI with async support, PostgreSQL for data, Redis for caching/sessions, Docker Compose for deployment. Images stored on Cloudflare R2. Includes admin dashboard for product/order management. JWT authentication with role-based access.',
-      priority: 'Development',
-      infra: [
-        { k: 'Backend', v: 'FastAPI (Python)' },
-        { k: 'Database', v: 'PostgreSQL (dedicated)' },
-        { k: 'Cache', v: 'Redis' },
-        { k: 'Images', v: 'Cloudflare R2 bucket' },
-        { k: 'Deploy', v: 'Docker Compose' },
-        { k: 'Auth', v: 'JWT (HS256)' },
-        { k: 'Project', v: '~/projects/supplement-ecommerce/' },
-      ],
-      modules: ['Product Catalog API', 'Order Management', 'Shopping Cart', 'JWT Auth (role-based)', 'Admin Dashboard', 'Image Upload (R2 integration)', 'Rate Limiting', 'Database Migrations (Alembic)'],
-      files: { type: 'fullstack', items: ['app/ or src/ — FastAPI application', 'admin-dashboard/ — Admin frontend', 'alembic/ — Database migrations', 'docker-compose.yml — Container orchestration', 'Dockerfile — App container', 'tests/ — Test suite'] },
-      envKeys: ['DATABASE_URL', 'REDIS_URL', 'SECRET_KEY', 'R2_ACCOUNT_ID', 'R2_ACCESS_KEY_ID', 'R2_SECRET_ACCESS_KEY', 'R2_BUCKET_NAME', 'R2_PUBLIC_URL'],
-      connections: ['Cloudflare R2 (image storage)', 'Supplement Storefront (customer frontend)']
-    }
-  },
-  {
-    id: 'supplement-storefront', title: 'Supplement Storefront', subtitle: 'Next.js Customer-Facing Store',
-    icon: '\uD83D\uDED2', color: 'yellow', status: 'dev',
-    x: 2100, y: 1200, w: 240, h: 80,
-    category: ['all'],
-    tags: ['Next.js', 'Tailwind', 'Railway'],
-    detail: {
-      description: 'Customer-facing storefront for supplement products. Built with Next.js 14+ and Tailwind CSS. Server-side rendering for SEO. Deployed on Railway. Connects to the Supplement E-commerce FastAPI backend for product data, cart, and checkout.',
-      priority: 'Development',
-      infra: [
-        { k: 'Stack', v: 'Next.js 14+ (App Router)' },
-        { k: 'Styling', v: 'Tailwind CSS' },
-        { k: 'Deploy', v: 'Railway' },
-        { k: 'API', v: 'Connects to FastAPI backend' },
-        { k: 'Project', v: '~/projects/supplement-storefront/' },
-      ],
-      modules: ['Product Catalog Pages', 'Shopping Cart', 'Checkout Flow', 'Responsive Design', 'SEO (SSR)'],
-      connections: ['Supplement E-commerce API (data source)', 'Railway (hosting)']
-    }
-  },
-  {
-    id: 'skills', title: 'Claude Code Skills', subtitle: 'Custom Dev Toolkit — 10+ Slash Commands',
-    icon: '\uD83D\uDD27', color: 'green', status: 'live',
-    x: 900, y: 1200, w: 240, h: 80,
-    category: ['all'],
-    tags: ['TypeScript', '10+ skills'],
-    detail: {
-      description: 'Custom Claude Code skills that provide slash-command access to ecosystem management. Developer validation (fuzzy-matching against 61 UAE developers), MCC agent management, deployment automation, broadcasting, analytics, and content generation.',
-      priority: 'Production',
-      infra: [
-        { k: 'Stack', v: 'Node.js + TypeScript' },
-        { k: 'Skills', v: '10+ custom commands' },
-        { k: 'Project', v: '~/projects/skills/' },
-      ],
-      modules: ['/developer-validation — 61-developer fuzzy matching', '/mcc — MCC agent management', '/deploy — AWS Lightsail deployment', '/broadcast — Multi-agent broadcasting', '/wake-agents — Refresh agent heartbeats', '/agent-status — Health check all agents', '/marketing-analytics — Performance reports', '/generate-content — AI content generation', '/standup — Daily standup summary', '/webapp-testing — Playwright testing'],
-      connections: ['All projects (development tooling)', 'MCC (agent management)', 'AWS Lightsail (deployment)']
-    }
-  },
-  {
-    id: 'realedata-review', title: 'Atlas Review Dashboard', subtitle: 'Admin Audit & Quality Assurance Tool',
-    icon: '\uD83D\uDD0D', color: 'green', status: 'live',
-    x: 1180, y: 1200, w: 240, h: 80,
-    category: ['all'],
-    tags: ['React', 'Vite', 'Audit'],
-    detail: {
-      description: 'Audit and review dashboard for the UAE Property Hub admin panel. Used to identify data quality issues, UX problems, and architectural improvements. Findings documented in ATLAS_FINDINGS.md with actionable recommendations.',
-      priority: 'Production',
-      infra: [
-        { k: 'Stack', v: 'React + Vite + Tailwind' },
-        { k: 'Project', v: '~/projects/realedata-atlas-review/' },
-      ],
-      modules: ['Audit View', 'Findings Report (ATLAS_FINDINGS.md)', 'Backend Requirements Doc'],
-      connections: ['UAE Property Hub admin dashboard (audits against)']
-    }
-  },
-  {
-    id: 'observability', title: 'Claude Code Observability', subtitle: 'Development Session Monitoring',
-    icon: '\uD83D\uDCCA', color: 'green', status: 'live',
-    x: 1460, y: 1200, w: 240, h: 80,
-    category: ['all'],
-    tags: ['Monitoring', 'Metrics'],
-    detail: {
-      description: 'Monitoring and observability for Claude Code development sessions. Tracks session activity, tool usage, and performance metrics for development workflow optimization.',
-      priority: 'Support',
-      infra: [
-        { k: 'Project', v: '~/projects/claude-code-observability/' },
-      ],
-      modules: ['Session Tracking', 'Tool Usage Metrics', 'Performance Monitoring'],
-      connections: ['Claude Code sessions (local development)']
-    }
-  },
-  {
-    id: 'aws-lightsail', title: 'AWS Lightsail', subtitle: '65.0.250.47 — Primary Server',
-    icon: '\u2601', color: 'green', status: 'live',
-    x: 680, y: 400, w: 200, h: 70,
-    category: ['all','infra'],
-    tags: ['Ubuntu', 'Docker', 'ap-south-1'],
-    detail: {
-      description: 'Primary cloud server hosting the UAE Property Hub backend. Ubuntu with Docker. SSH access via Lightsail default key.',
-      priority: 'Production',
-      infra: [
-        { k: 'IP', v: '65.0.250.47' },
-        { k: 'Region', v: 'ap-south-1 (Mumbai)' },
-        { k: 'OS', v: 'Ubuntu' },
-        { k: 'SSH Key', v: '~/Downloads/LightsailDefaultKey-ap-south-1.pem' },
-        { k: 'App Path', v: '/opt/uae-property-hub' },
-      ],
-      modules: ['Docker Engine', 'FastAPI Container (property-hub-backend-dev)'],
-      connections: ['PostgreSQL (Stockholm)', 'Internet (realedata.ai)', 'Git (deployment via pull)']
-    }
-  },
-  {
-    id: 'postgresql', title: 'PostgreSQL', subtitle: 'AWS Stockholm — 13,832+ Properties',
-    icon: '\uD83D\uDDC4', color: 'green', status: 'live',
-    x: 960, y: 400, w: 200, h: 70,
-    category: ['all','infra'],
-    tags: ['13,832+ props', '65+ devs'],
-    detail: {
-      description: 'Primary PostgreSQL database for UAE Property Hub. Hosted in AWS Stockholm region. Stores all property listings, developer profiles, user accounts, scoring data, and analytics.',
-      priority: 'Production',
-      infra: [
-        { k: 'Region', v: 'AWS Stockholm (eu-north-1)' },
-        { k: 'Properties', v: '13,832+' },
-        { k: 'Developers', v: '65+' },
-        { k: 'Migrations', v: 'Alembic' },
-      ],
-      modules: ['Property Listings', 'Developer Profiles', 'User Accounts', 'Atlas Scores', 'Activity Logs'],
-      connections: ['UAE Property Hub backend (primary consumer)']
-    }
-  },
-  {
-    id: 'telegram', title: 'Telegram Alerts', subtitle: 'Real-time Notification Hub',
-    icon: '\uD83D\uDCF1', color: 'green', status: 'live',
-    x: 1200, y: 400, w: 200, h: 70,
-    category: ['all','infra'],
-    tags: ['Bot API', 'Multi-source'],
-    detail: {
-      description: 'Telegram bot that receives real-time alerts from multiple systems. Single chat (ID: 365560664) aggregates notifications from Property Hub, Empire Tracker (high-intent visitors), Launch Interceptor (new launches), and system health alerts.',
-      priority: 'Production',
-      infra: [
-        { k: 'Chat ID', v: '365560664' },
-        { k: 'Sources', v: '4+ systems send alerts' },
-      ],
-      modules: ['Property Hub alerts', 'High-intent visitor alerts', 'New launch detection alerts', 'System health alerts'],
-      connections: ['UAE Property Hub', 'Empire Tracker', 'Launch Interceptor', 'Empire Command Center']
-    }
-  },
-  {
-    id: 'groq', title: 'Groq API', subtitle: 'Ultra-Fast AI — llama-3.3-70b + Whisper',
-    icon: '\u26A1', color: 'orange', status: 'live',
-    x: 1960, y: 600, w: 230, h: 70,
-    category: ['all','ai'],
-    tags: ['LLM', 'Whisper', 'Free tier'],
-    detail: {
-      description: 'Groq API provides ultra-fast AI inference (sub-second response times). Primary AI for Atlas2 WhatsApp bot (real-time lead conversations). Also used by Launch Interceptor for content analysis and Ottawa-Dubai for content generation. Free tier covers current usage.',
-      priority: 'Production',
-      infra: [
-        { k: 'LLM', v: 'llama-3.3-70b-versatile' },
-        { k: 'Voice', v: 'Whisper (speech-to-text)' },
-        { k: 'Cost', v: 'Free tier (current usage)' },
-        { k: 'Latency', v: '< 1 second' },
-      ],
-      modules: ['Chat completions (llama-3.3-70b)', 'Audio transcription (Whisper)'],
-      connections: ['Atlas2 WhatsApp (primary AI + voice)', 'Launch Interceptor (analysis)', 'Ottawa-Dubai Arbitrage (content gen)']
-    }
-  },
-  {
-    id: 'archive', title: 'Archived Projects', subtitle: '6 Superseded / Completed Projects',
-    icon: '\uD83D\uDCE6', color: 'gray', status: 'parked',
-    x: 1700, y: 1200, w: 230, h: 80,
-    category: ['all'],
-    tags: ['6 projects', 'archived'],
-    detail: {
-      description: 'Projects that have been superseded by newer systems or completed their purpose. Kept in _archive/ for reference.',
-      priority: 'Archive',
-      infra: [
-        { k: 'Location', v: '~/projects/_archive/' },
-        { k: 'Count', v: '6 projects' },
-      ],
-      agents: [
-        { name: 'dubai-seminar-landing', desc: 'Landing page for earlier seminar campaigns — replaced by Roadshow agent in Clawd' },
-        { name: 'empire-scheduler', desc: 'Earlier scheduling system — functionality absorbed into Empire CC cron' },
-        { name: 'instantly-automation', desc: 'Instantly.ai email automation — discontinued in favor of WhatsApp-first approach' },
-        { name: 'ottawa-campaign-dubai', desc: 'Earlier Ottawa targeting campaign — evolved into Ottawa-Dubai Arbitrage engine' },
-        { name: 'ottawa-campaign', desc: 'Original Ottawa campaign — predecessor to ottawa-campaign-dubai' },
-        { name: 'siya-assistant', desc: 'Early personal AI assistant prototype — evolved into Clawd agent framework' },
-      ],
-      connections: ['None (archived — reference only)']
-    }
-  },
-  {
-    id: 'my-video-project', title: 'My Video Project', subtitle: 'Node.js Video Production Pipeline',
-    icon: '\uD83C\uDFA5', color: 'purple', status: 'dev',
-    x: 580, y: 1340, w: 230, h: 70,
-    category: ['all'],
-    tags: ['Node.js', 'Video'],
-    detail: {
-      description: 'General-purpose video production project using Node.js. Complements Dubai Social Videos for broader video content needs.',
-      priority: 'Development',
-      infra: [{ k: 'Stack', v: 'Node.js' }, { k: 'Project', v: '~/projects/my-video-project/' }],
-      modules: ['Video Processing Pipeline'],
-      connections: ['MCC (content distribution)']
-    }
-  },
+// ═══════════════════════════════════════════
+// HORIZONTAL LAYOUT: L→R story flow
+// Col 0 (x~60):   LEAD SOURCES
+// Col 1 (x~420):  AI PROCESSING
+// Col 2 (x~820):  COMMAND CENTER (hub)
+// Col 3 (x~1220): DATA/STORAGE
+// Col 4 (x~1620): OUTPUTS
+// Col 5 (x~2020): SIDE / SUPPORT
+// ═══════════════════════════════════════════
+
+const W=280, H=110; // card size
+const N=[
+  // ── COL 0: LEAD SOURCES ──
+  {id:'atlas2',title:'Atlas2 WhatsApp Bot',sub:'24/7 Lead Qualifier',icon:'\uD83D\uDCAC',c:'red',s:'live',x:60,y:80,cat:['all','ai','leads'],
+   stat:'Groq + Claude AI \u2022 166 tests',
+   tags:['Node.js','Baileys','SQLite','Groq+Claude','Port 18790'],
+   detail:{desc:'Primary WhatsApp bot using Baileys (WhatsApp Web protocol) with dual AI: Groq for speed, Claude for complex reasoning. Handles voice (Whisper), images, NLP property search (40+ area aliases), CRM integration, proactive outreach (48hr follow-ups, broadcast, reminders). Detects Arabic/Farsi/English. 166 tests across 4 suites.',
+     infra:[{k:'Host',v:'Local Mac'},{k:'Port',v:'18790'},{k:'DB',v:'SQLite WAL ~/.atlas2-whatsapp/'},{k:'AI',v:'Groq llama-3.3-70b + Claude'},{k:'Voice',v:'Groq Whisper'},{k:'Tests',v:'166 across 4 suites'},{k:'Path',v:'~/projects/atlas2-whatsapp/'}],
+     mods:['ai-engine.js','property-search.js','outreach.js','conversation.js','voice.js','crm.js','language.js','intelligence.js','gateway.js','media.js','group-context-buffer.js','topic-filter.js','sender-map.js'],
+     conns:['Groq API (LLM + Whisper)','Anthropic API (Claude)','CRM API (Bearer)','Ingestion API','Empire CC']}},
+  {id:'wa-auto',title:'WhatsApp Automation',sub:'Cloud API Webhook Relay',icon:'\u2601\uFE0F',c:'blue',s:'live',x:60,y:240,cat:['all','infra','leads'],
+   stat:'CF Worker \u2022 D1: whatsapp-auto',
+   tags:['CF Worker','D1','WhatsApp Cloud API'],
+   detail:{desc:'Cloudflare Worker receiving WhatsApp Cloud API webhooks. Stores messages in D1, relays to Empire CC via service binding (zero-latency). Routes property queries to Property Hub API.',
+     infra:[{k:'Runtime',v:'CF Worker'},{k:'DB',v:'D1: whatsapp-auto'},{k:'Service Binding',v:'EMPIRE \u2192 empire-cc'},{k:'Path',v:'~/projects/whatsapp-automation/'}],
+     mods:['Webhook Handler','Message Router','D1 Storage','Empire Service Binding'],
+     conns:['WhatsApp Cloud API','Empire CC (service binding)','Property Hub API']}},
+  {id:'tracker',title:'Empire Tracker',sub:'Visitor Behavioral Scoring',icon:'\uD83D\uDC41\uFE0F',c:'blue',s:'live',x:60,y:400,cat:['all','infra','leads'],
+   stat:'CF Worker \u2022 D1: tracker-db',
+   tags:['CF Worker','D1','Tracking Pixel','JS Embed'],
+   detail:{desc:'Lightweight CF Worker serving a tracking pixel on realedata.ai. Captures page views, scroll depth, time-on-page, clicks. Scores visitors by intent, alerts Telegram for high-intent signals.',
+     infra:[{k:'Runtime',v:'CF Worker'},{k:'DB',v:'D1: empire-tracker-db'},{k:'Pixel',v:'tracking.js / tracking.min.js'},{k:'Path',v:'~/projects/empire-tracker/'}],
+     mods:['Tracking Pixel (JS)','Visitor Score Calculator','Behavioral Logger','High-Intent Alert Engine'],
+     conns:['Empire CC','realedata.ai (pixel embedded)','Telegram alerts']}},
+  {id:'atlas3',title:'Atlas3 Lead Agent',sub:'PARKED \u2014 Future 2nd Number',icon:'\uD83D\uDCAC',c:'gray',s:'parked',x:60,y:560,cat:['all'],
+   stat:'Parked \u2022 launchd plist ready',
+   tags:['Node.js','Baileys','Parked'],
+   detail:{desc:'Secondary WhatsApp bot for a second phone number. Forked from Atlas2. launchd plist configured for auto-start. Will be activated for campaign segmentation or overflow.',
+     infra:[{k:'Status',v:'PARKED'},{k:'Auto-start',v:'launchd plist ready'},{k:'Path',v:'~/projects/atlas3-lead-agent/'}],
+     mods:['Same as Atlas2 (forked)'],conns:['Would connect to Empire CC']}},
+
+  // ── COL 1: AI PROCESSING ──
+  {id:'groq',title:'Groq API',sub:'llama-3.3-70b + Whisper',icon:'\u26A1',c:'orange',s:'live',x:460,y:80,cat:['all','ai'],
+   stat:'Free tier \u2022 <1s latency',
+   tags:['LLM','Whisper','Free tier'],
+   detail:{desc:'Ultra-fast AI inference. Primary AI for Atlas2 WhatsApp (real-time conversations + voice transcription via Whisper). Also used by Launch Interceptor and Ottawa-Dubai.',
+     infra:[{k:'LLM',v:'llama-3.3-70b-versatile'},{k:'Voice',v:'Whisper transcription'},{k:'Cost',v:'Free tier'},{k:'Latency',v:'<1 second'}],
+     mods:['Chat completions','Audio transcription'],conns:['Atlas2 WhatsApp','Launch Interceptor','Ottawa-Dubai']}},
+  {id:'clawd',title:'Clawd',sub:'AI Agent Framework \u2014 4 Agents',icon:'\uD83E\uDD16',c:'orange',s:'dev',x:460,y:240,cat:['all','ai'],
+   stat:'Hub \u2022 Optical \u2022 ReLead \u2022 Roadshow',
+   tags:['4 Domain Agents','Memory','Identity','Canvas'],
+   detail:{desc:'Multi-agent AI framework. 4 specialized agents each with persistent identity, memory, heartbeat, bootstrap config. Hub Agent (property ops), Optical Agent (Dubai Optical B2B), ReLead Agent (lead gen), Roadshow Agent (March 2026 seminars).',
+     infra:[{k:'Agents',v:'4 domain specialists'},{k:'Canvas',v:'HTML interface'},{k:'Path',v:'~/projects/clawd/'}],
+     mods:['Agent Runtime','Memory Store','Identity System','Heartbeat Monitor','Canvas UI'],
+     agents:[{n:'Hub Agent',d:'Property Hub operations'},{n:'Optical Agent',d:'Dubai Optical B2B wellness'},{n:'ReLead Agent',d:'Lead gen & qualification'},{n:'Roadshow Agent',d:'March 2026 seminars'}],
+     conns:['UAE Property Hub','Dubai Optical','MCC','Empire CC']}},
+  {id:'launch',title:'Launch Interceptor',sub:'Predictive Market Intelligence',icon:'\uD83D\uDE80',c:'orange',s:'dev',x:460,y:400,cat:['all','ai'],
+   stat:'Python + Groq \u2022 Auto-scan',
+   tags:['Python','Groq AI','Scrapers','Alerts'],
+   detail:{desc:'Scrapes developer websites and market sources to detect new Dubai property launches before public announcement. Groq AI for content analysis. Configurable scan intervals and confidence thresholds.',
+     infra:[{k:'Stack',v:'Python + Groq'},{k:'Scan',v:'Configurable interval'},{k:'Path',v:'~/projects/launch-interceptor/'}],
+     mods:['Scrapers','Analyzers','Alert Engine','API Server','Database'],
+     conns:['Empire CC','Telegram','Groq API','MCC']}},
+  {id:'ottawa',title:'Ottawa-Dubai Arbitrage',sub:'Cross-Border Content Engine',icon:'\uD83C\uDF0D',c:'orange',s:'dev',x:460,y:560,cat:['all','ai'],
+   stat:'CAD/AED monitor \u2022 Content gen',
+   tags:['Python','Currency','Content Gen','Leads'],
+   detail:{desc:'Monitors CAD/AED exchange rates for favorable investment windows. Generates targeted cross-border content for Canadian investors. Feeds content to MCC for multi-platform distribution.',
+     infra:[{k:'Stack',v:'Python'},{k:'Rates',v:'CAD/AED configurable thresholds'},{k:'Path',v:'~/projects/ottawa-dubai-arbitrage/'}],
+     mods:['Currency Monitor','Content Generators','Market Monitors','Lead Trackers','Empire Integration'],
+     conns:['Empire CC','Exchange Rate API','Groq API','MCC']}},
+
+  // ── COL 2: COMMAND CENTER (HUB) ──
+  {id:'empire',title:'Empire Command Center',sub:'Central Event Bus & Registry',icon:'\u26A1',c:'hub',s:'live',x:900,y:280,cat:['all','infra'],
+   stat:'CF Worker \u2022 D1 \u2022 Cron 5min \u2022 Dashboard',
+   tags:['CF Worker','D1: empire-cc','Cron: 5min','React Dashboard'],
+   detail:{desc:'Central nervous system. Routes events between ALL services. Health checks every 5 min (cron). React/Vite dashboard for real-time monitoring. Service binding target for WhatsApp Automation.',
+     infra:[{k:'Runtime',v:'CF Worker'},{k:'DB',v:'D1: empire-cc'},{k:'Cron',v:'*/5 * * * *'},{k:'Dashboard',v:'React/Vite app'},{k:'Path',v:'~/projects/empire-command-center/'}],
+     mods:['Event Router','Health Monitor','Dashboard API','Service Registry','Dashboard App'],
+     conns:['All 8+ services report here','Broadcasts to subscribers','Service binding from WA Automation']}},
+
+  // ── COL 3: DATA/STORAGE ──
+  {id:'hub',title:'UAE Property Hub',sub:'realedata.ai \u2014 Core Platform',icon:'\uD83C\uDFE2',c:'green',s:'live',x:1340,y:80,cat:['all','infra','leads'],
+   stat:'15,957+ properties \u2022 65+ developers',
+   tags:['FastAPI','React','PostgreSQL','AWS Lightsail'],
+   detail:{desc:'Flagship SaaS platform. 15,957+ properties (12,836 + 3,121 ingested) across 65+ developers. Atlas AI 125-point scoring, admin dashboard, broker tools, Stripe billing, Google Maps.',
+     infra:[{k:'Host',v:'AWS Lightsail 65.0.250.47'},{k:'DB',v:'PostgreSQL (AWS Stockholm)'},{k:'Backend',v:'FastAPI (Python)'},{k:'Frontend',v:'React + Vite + Tailwind'},{k:'Properties',v:'15,957+'},{k:'Developers',v:'65+'},{k:'Path',v:'~/projects/uae-property-hub/'}],
+     mods:['Atlas AI (125-pt scoring)','Atlas Assistant','Atlas Matcher','Bulk Upload','Business Router','Scoring Engine','Context Engine','Data Cleaner','DeepSeek Research','AI Orchestrator','Universal Parser'],
+     conns:['OpenAI API','Google Maps','Stripe','Telegram','Empire CC']}},
+  {id:'pg',title:'PostgreSQL',sub:'AWS Stockholm \u2014 Primary DB',icon:'\uD83D\uDDC4\uFE0F',c:'green',s:'live',x:1340,y:280,cat:['all','infra'],
+   stat:'15,957+ properties \u2022 65+ devs',
+   tags:['AWS Stockholm','Alembic migrations'],
+   detail:{desc:'Primary database. Stores all property listings, developer profiles, user accounts, Atlas scores, analytics.',
+     infra:[{k:'Region',v:'AWS Stockholm'},{k:'Properties',v:'15,957+'},{k:'Developers',v:'65+'},{k:'Migrations',v:'Alembic'}],
+     mods:['Property Listings','Developer Profiles','User Accounts','Atlas Scores'],conns:['UAE Property Hub backend']}},
+  {id:'lightsail',title:'AWS Lightsail',sub:'65.0.250.47 \u2014 Server',icon:'\u2601\uFE0F',c:'green',s:'live',x:1340,y:450,cat:['all','infra'],
+   stat:'Ubuntu \u2022 Docker \u2022 ap-south-1',
+   tags:['Ubuntu','Docker','SSH'],
+   detail:{desc:'Primary cloud server. Docker containers running FastAPI backend.',
+     infra:[{k:'IP',v:'65.0.250.47'},{k:'Region',v:'ap-south-1 (Mumbai)'},{k:'OS',v:'Ubuntu'},{k:'Deploy',v:'Docker + git pull'}],
+     mods:['FastAPI Container','Docker Engine'],conns:['PostgreSQL (Stockholm)','Internet (realedata.ai)']}},
+  {id:'telegram',title:'Telegram Alerts',sub:'Real-time Notifications',icon:'\uD83D\uDCF1',c:'green',s:'live',x:1340,y:610,cat:['all','infra'],
+   stat:'Chat 365560664 \u2022 4+ sources',
+   tags:['Bot API','Multi-source alerts'],
+   detail:{desc:'Aggregates real-time alerts: Property Hub events, Empire Tracker high-intent visitors, Launch Interceptor new launches, system health.',
+     infra:[{k:'Chat ID',v:'365560664'},{k:'Sources',v:'4+ systems'}],
+     mods:['Property alerts','Visitor alerts','Launch alerts','Health alerts'],conns:['Property Hub','Empire Tracker','Launch Interceptor','Empire CC']}},
+
+  // ── COL 4: OUTPUTS ──
+  {id:'mcc',title:'Marketing Command Center',sub:'10 AI Agents \u2014 Omnichannel',icon:'\uD83D\uDCE2',c:'purple',s:'dev',x:1780,y:80,cat:['all','leads'],
+   stat:'LinkedIn \u2022 Insta \u2022 FB \u2022 X \u2022 TT \u2022 YT + 3',
+   tags:['PostgreSQL','10 Agents','Orchestrator','Analytics'],
+   detail:{desc:'10 AI agents managing all social platforms. Orchestrator coordinates campaigns. Market data scrapers, analytics engine, content queue.',
+     infra:[{k:'DB',v:'PostgreSQL: marketing_command_center'},{k:'Agents',v:'10 platform specialists'},{k:'Path',v:'~/projects/marketing-command-center/'}],
+     mods:['Master Orchestrator','Market Data Scrapers','Analytics Engine','Content Queue'],
+     agents:[{n:'LinkedIn',d:'B2B thought leadership'},{n:'Instagram',d:'Visual property content'},{n:'Facebook',d:'Community & ads'},{n:'Twitter/X',d:'Market commentary'},{n:'TikTok',d:'Short-form video'},{n:'YouTube',d:'Long-form content'},{n:'Analytics',d:'Performance tracking'},{n:'Content Factory',d:'Content generation'},{n:'Lead Capture',d:'Cross-platform leads'}],
+     conns:['Empire CC','All social platforms','Ottawa-Dubai content','Launch Interceptor intel']}},
+  {id:'videos',title:'Dubai Social Videos',sub:'Programmatic Video Gen',icon:'\uD83C\uDFAC',c:'purple',s:'dev',x:1780,y:210,cat:['all'],
+   stat:'Remotion + React',
+   tags:['Remotion','Node.js','React'],
+   detail:{desc:'Generates social media videos programmatically using Remotion. Property showcases, market updates, area spotlights.',
+     infra:[{k:'Stack',v:'Remotion + React + TypeScript'},{k:'Path',v:'~/projects/dubai-social-videos/'}],
+     mods:['Video Templates','Render Pipeline','Multi-format output'],conns:['MCC Content Factory','Property Hub data']}},
+  {id:'myvid',title:'My Video Project',sub:'Node.js Video Pipeline',icon:'\uD83C\uDFA5',c:'purple',s:'dev',x:1780,y:340,cat:['all'],
+   stat:'Node.js',tags:['Node.js','Video'],
+   detail:{desc:'General video production project.',infra:[{k:'Stack',v:'Node.js'},{k:'Path',v:'~/projects/my-video-project/'}],mods:['Video Pipeline'],conns:['MCC']}},
+  {id:'skills',title:'Claude Code Skills',sub:'Custom Dev Toolkit',icon:'\uD83D\uDD27',c:'green',s:'live',x:1780,y:470,cat:['all'],
+   stat:'10+ slash commands',
+   tags:['TypeScript','10+ skills'],
+   detail:{desc:'Custom Claude Code skills: developer-validation (61 devs), MCC management, deployment, broadcasting, analytics, content gen.',
+     infra:[{k:'Stack',v:'Node.js + TypeScript'},{k:'Path',v:'~/projects/skills/'}],
+     mods:['/developer-validation','/mcc','/deploy','/broadcast','/wake-agents','/agent-status','/marketing-analytics','/generate-content','/standup'],conns:['All projects']}},
+  {id:'review',title:'Atlas Review',sub:'Admin Audit Dashboard',icon:'\uD83D\uDD0D',c:'green',s:'live',x:1780,y:600,cat:['all'],
+   stat:'React + Vite',tags:['React','Vite','Audit'],
+   detail:{desc:'Audit dashboard for Property Hub admin. Findings in ATLAS_FINDINGS.md.',infra:[{k:'Stack',v:'React + Vite'},{k:'Path',v:'~/projects/realedata-atlas-review/'}],mods:['Audit Views','Findings Report'],conns:['Property Hub admin']}},
+  {id:'observe',title:'Observability',sub:'Dev Session Monitoring',icon:'\uD83D\uDCCA',c:'green',s:'live',x:1780,y:730,cat:['all'],
+   stat:'Metrics & tracking',tags:['Monitoring'],
+   detail:{desc:'Monitoring for Claude Code dev sessions.',infra:[{k:'Path',v:'~/projects/claude-code-observability/'}],mods:['Session Tracking','Metrics'],conns:['Dev workflow']}},
+
+  // ── COL 5: SIDE BUSINESS + ARCHIVE ──
+  {id:'supp-api',title:'Supplement E-commerce',sub:'FastAPI + PG + Redis Store',icon:'\uD83D\uDC8A',c:'gold',s:'dev',x:2220,y:80,cat:['all'],
+   stat:'Docker \u2022 R2 images',
+   tags:['FastAPI','PostgreSQL','Redis','Docker','R2'],
+   detail:{desc:'Full e-commerce backend for supplements. FastAPI + PostgreSQL + Redis. Images on Cloudflare R2. Docker Compose deployment.',
+     infra:[{k:'Backend',v:'FastAPI'},{k:'DB',v:'PostgreSQL'},{k:'Cache',v:'Redis'},{k:'Images',v:'Cloudflare R2'},{k:'Deploy',v:'Docker Compose'},{k:'Path',v:'~/projects/supplement-ecommerce/'}],
+     mods:['Product API','Order Management','Admin Dashboard','Image Upload (R2)','JWT Auth'],conns:['Cloudflare R2','Supplement Storefront']}},
+  {id:'supp-web',title:'Supplement Storefront',sub:'Next.js Customer Frontend',icon:'\uD83D\uDED2',c:'gold',s:'dev',x:2220,y:250,cat:['all'],
+   stat:'Next.js + Tailwind \u2022 Railway',
+   tags:['Next.js','Tailwind','Railway'],
+   detail:{desc:'Customer storefront. Next.js 14+ with Tailwind. Deployed on Railway.',
+     infra:[{k:'Stack',v:'Next.js + Tailwind'},{k:'Deploy',v:'Railway'},{k:'Path',v:'~/projects/supplement-storefront/'}],
+     mods:['Product Catalog','Cart','Checkout'],conns:['Supplement E-commerce API']}},
+  {id:'archive',title:'Archived Projects',sub:'6 superseded projects',icon:'\uD83D\uDCE6',c:'gray',s:'parked',x:2220,y:420,cat:['all'],
+   stat:'dubai-seminar \u2022 empire-scheduler \u2022 +4',
+   tags:['6 projects','archived'],
+   detail:{desc:'Superseded: dubai-seminar-landing, empire-scheduler, instantly-automation, ottawa-campaign-dubai, ottawa-campaign, siya-assistant.',
+     infra:[{k:'Location',v:'~/projects/_archive/'},{k:'Count',v:'6 projects'}],
+     mods:['dubai-seminar-landing','empire-scheduler','instantly-automation','ottawa-campaign-dubai','ottawa-campaign','siya-assistant'],conns:['None']}},
 ];
 
-// ══════════════════
-// CONNECTION DATA
-// ══════════════════
-const connections = [
-  { from: 'uae-property-hub', to: 'empire-cc', color: 'green', label: 'events' },
-  { from: 'empire-tracker', to: 'empire-cc', color: 'blue', label: 'visitor data' },
-  { from: 'whatsapp-automation', to: 'empire-cc', color: 'blue', label: 'service binding' },
-  { from: 'atlas2-whatsapp', to: 'empire-cc', color: 'red', label: 'lead events' },
-  { from: 'launch-interceptor', to: 'empire-cc', color: 'orange', label: 'launch alerts' },
-  { from: 'ottawa-dubai', to: 'empire-cc', color: 'orange', label: 'content events' },
-  { from: 'mcc', to: 'empire-cc', color: 'purple', label: 'campaign events' },
-  { from: 'clawd', to: 'empire-cc', color: 'orange', label: 'agent events' },
-  { from: 'uae-property-hub', to: 'aws-lightsail', color: 'green', label: 'hosted on' },
-  { from: 'uae-property-hub', to: 'postgresql', color: 'green', label: 'data' },
-  { from: 'uae-property-hub', to: 'telegram', color: 'green', label: 'alerts' },
-  { from: 'empire-tracker', to: 'telegram', color: 'blue', label: 'alerts' },
-  { from: 'atlas2-whatsapp', to: 'groq', color: 'orange', label: 'AI + voice' },
-  { from: 'whatsapp-automation', to: 'uae-property-hub', color: 'blue', label: 'property API' },
-  { from: 'ottawa-dubai', to: 'mcc', color: 'purple', label: 'content' },
-  { from: 'launch-interceptor', to: 'mcc', color: 'purple', label: 'intel' },
-  { from: 'dubai-social-videos', to: 'mcc', color: 'purple', label: 'videos' },
-  { from: 'supplement-storefront', to: 'supplement-ecommerce', color: 'yellow', label: 'API' },
-  { from: 'clawd', to: 'uae-property-hub', color: 'orange', label: 'hub agent' },
-  { from: 'clawd', to: 'mcc', color: 'orange', label: 'content' },
-  { from: 'launch-interceptor', to: 'telegram', color: 'orange', label: 'alerts' },
+// ═══ CONNECTIONS (from → to, with type for color) ═══
+const E=[
+  // Lead sources → AI
+  {f:'atlas2',t:'groq',type:'data',label:'AI + Whisper voice'},
+  {f:'atlas2',t:'empire',type:'lead',label:'Lead events & CRM data'},
+  {f:'wa-auto',t:'empire',type:'data',label:'Service binding (zero-latency)'},
+  {f:'wa-auto',t:'hub',type:'data',label:'Property API queries'},
+  {f:'tracker',t:'empire',type:'data',label:'Visitor scores & events'},
+  {f:'tracker',t:'telegram',type:'alert',label:'High-intent visitor alerts'},
+  // AI → Hub
+  {f:'clawd',t:'empire',type:'data',label:'Agent events'},
+  {f:'clawd',t:'hub',type:'data',label:'Hub agent operations'},
+  {f:'clawd',t:'mcc',type:'content',label:'Content from agents'},
+  {f:'launch',t:'empire',type:'alert',label:'New launch alerts'},
+  {f:'launch',t:'telegram',type:'alert',label:'Launch detection alerts'},
+  {f:'launch',t:'mcc',type:'content',label:'Market intel feed'},
+  {f:'ottawa',t:'empire',type:'data',label:'Content events'},
+  {f:'ottawa',t:'mcc',type:'content',label:'Cross-border content'},
+  // Hub → Storage
+  {f:'empire',t:'hub',type:'data',label:'Routed events & data'},
+  {f:'hub',t:'pg',type:'data',label:'Property data (ORM)'},
+  {f:'hub',t:'lightsail',type:'data',label:'Hosted on'},
+  {f:'hub',t:'telegram',type:'alert',label:'Platform alerts'},
+  // Storage → Outputs
+  {f:'empire',t:'mcc',type:'data',label:'Campaign events'},
+  {f:'hub',t:'mcc',type:'content',label:'Property data for content'},
+  {f:'videos',t:'mcc',type:'content',label:'Video assets'},
+  // Side
+  {f:'supp-web',t:'supp-api',type:'data',label:'Storefront API calls'},
 ];
 
-const clusters = [
-  { label: 'Core Platform', x: 640, y: 160, w: 560, h: 340 },
-  { label: 'Cloudflare Edge', x: 1600, y: 360, w: 340, h: 360 },
-  { label: 'WhatsApp Systems', x: 1600, y: 760, w: 640, h: 160 },
-  { label: 'AI & Intelligence', x: 160, y: 560, w: 680, h: 470 },
-  { label: 'Marketing & Content', x: 160, y: 1160, w: 720, h: 280 },
-  { label: 'Side Businesses', x: 1760, y: 1160, w: 620, h: 160 },
-  { label: 'Support & Tools', x: 860, y: 1160, w: 880, h: 160 },
+// ═══ ZONES ═══
+const Z=[
+  {x:40,y:60,w:W+60,h:640,color:'var(--red-z)',border:'var(--red)',label:'LEAD SOURCES',lx:50,ly:720},
+  {x:440,y:60,w:W+60,h:640,color:'var(--orange-z)',border:'var(--orange)',label:'AI PROCESSING',lx:450,ly:720},
+  {x:880,y:260,w:W+60,h:160,color:'rgba(34,211,238,0.05)',border:'var(--cyan)',label:'COMMAND HUB',lx:890,ly:440},
+  {x:1320,y:60,w:W+60,h:700,color:'var(--green-z)',border:'var(--green)',label:'DATA & STORAGE',lx:1330,ly:780},
+  {x:1760,y:60,w:W+60,h:810,color:'var(--purple-z)',border:'var(--purple)',label:'OUTPUTS',lx:1770,ly:890},
+  {x:2200,y:60,w:W+60,h:500,color:'var(--gold-z)',border:'var(--gold)',label:'SIDE / ARCHIVE',lx:2210,ly:580},
 ];
 
-// ══════════════════
-// STATE
-// ══════════════════
-let pan = { x: 0, y: 0 }, zoom = 0.55;
-let isDragging = false, dragStart = { x: 0, y: 0 }, panStart = { x: 0, y: 0 };
-let expandedNode = null, activeView = 'all';
+// Column flow arrows
+const COL_LABELS=[
+  {x:370,y:320,text:'LEADS \u2192'},
+  {x:770,y:330,text:'EVENTS \u2192'},
+  {x:1210,y:330,text:'ROUTES \u2192'},
+  {x:1660,y:330,text:'PUBLISH \u2192'},
+];
 
-const canvas = document.getElementById('canvas');
-const container = document.getElementById('canvasContainer');
-const linesLayer = document.getElementById('linesLayer');
+// ═══ FLOW PATH DEFINITIONS ═══
+const FLOWS={
+  '1':['atlas2','empire','hub'],
+  '2':['tracker','empire','telegram'],
+  '3':['launch','empire','mcc'],
+  '4':['mcc','empire'],
+  '5':['ottawa','mcc','empire'],
+  '6':['atlas2','empire','hub','pg'],
+};
 
-// ══════════════════
-// RENDER
-// ══════════════════
-function renderNodes() {
-  canvas.querySelectorAll('.node, .cluster-bg, .cluster-label').forEach(el => el.remove());
+// ═══ STATE ═══
+let pan={x:0,y:0},zoom=1,dragging=false,ds={x:0,y:0},ps={x:0,y:0};
+let selNode=null,view='all';
+const vp=document.getElementById('vp'),world=document.getElementById('world');
 
-  clusters.forEach(c => {
-    const bg = document.createElement('div');
-    bg.className = 'cluster-bg';
-    bg.style.cssText = `left:${c.x}px;top:${c.y}px;width:${c.w}px;height:${c.h}px;`;
-    canvas.appendChild(bg);
-    const lbl = document.createElement('div');
-    lbl.className = 'cluster-label';
-    lbl.textContent = c.label;
-    lbl.style.cssText = `left:${c.x + 16}px;top:${c.y + 8}px;`;
-    canvas.appendChild(lbl);
+// ═══ RENDER ═══
+function render(){
+  world.innerHTML='';
+
+  // Grid
+  const grid=document.createElement('div');
+  grid.style.cssText='position:absolute;top:0;left:0;width:2800px;height:1100px;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.025) 1px,transparent 0);background-size:40px 40px;z-index:0';
+  world.appendChild(grid);
+
+  // Zones
+  Z.forEach(z=>{
+    const d=document.createElement('div');
+    d.className='zone';
+    d.style.cssText=`left:${z.x}px;top:${z.y}px;width:${z.w}px;height:${z.h}px;background:${z.color};border:1px solid ${z.border};opacity:0.5`;
+    world.appendChild(d);
+    const l=document.createElement('div');
+    l.className='zone-label';
+    l.textContent=z.label;
+    l.style.cssText=`left:${z.lx}px;top:${z.ly}px;color:${z.border}`;
+    world.appendChild(l);
   });
 
-  nodes.forEach(n => {
-    const vis = n.category.includes(activeView);
-    const el = document.createElement('div');
-    el.className = `node ${n.color}${expandedNode === n.id ? ' expanded' : ''}`;
-    el.id = `node-${n.id}`;
-    el.style.cssText = `left:${n.x}px;top:${n.y}px;width:${n.w}px;opacity:${vis?1:0.15};pointer-events:${vis?'auto':'none'};transition:opacity 0.3s,transform 0.2s,box-shadow 0.2s;`;
+  // Column flow arrows
+  COL_LABELS.forEach(c=>{
+    const d=document.createElement('div');
+    d.className='col-label';
+    d.innerHTML=`<div class="col-arrow">${c.text}</div>`;
+    d.style.cssText=`left:${c.x}px;top:${c.y}px`;
+    world.appendChild(d);
+  });
 
-    const sc = n.status === 'live' ? 'live' : n.status === 'dev' ? 'dev' : 'parked';
-    el.innerHTML = `<div class="node-header"><div class="node-icon">${n.icon}</div><div><div class="node-title">${n.title}</div><div class="node-subtitle">${n.subtitle}</div></div><div class="node-status ${sc}"></div></div><div class="node-body"><div class="module-list">${n.tags.map(t => {const c=t.includes('API')||t.includes('FastAPI')?'api':t.includes('SQL')||t.includes('D1')||t.includes('SQLite')?'db':t.includes('AI')||t.includes('Groq')||t.includes('Claude')?'ai':t.includes('CF')||t.includes('AWS')||t.includes('Docker')||t.includes('Railway')?'infra':t.includes('Port')||t.includes('port')?'port':'stack';return`<span class="tag ${c}">${t}</span>`;}).join('')}</div><div style="margin-top:6px;color:var(--cyan);font-size:10px;font-weight:500;">Click again for full details &#8594;</div></div>`;
+  // SVG wires
+  const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+  svg.classList.add('wires');
+  svg.setAttribute('width','2800');svg.setAttribute('height','1100');
+  svg.style.cssText='position:absolute;top:0;left:0;z-index:3';
 
-    el.addEventListener('click', e => {
-      e.stopPropagation();
-      if (expandedNode === n.id) openDetail(n);
-      else { expandedNode = n.id; renderNodes(); drawConnections(); }
+  // Arrow markers
+  const defs=document.createElementNS('http://www.w3.org/2000/svg','defs');
+  ['lead','data','content','alert'].forEach(type=>{
+    const col={lead:'#f55a5a',data:'#4a9eff',content:'#b07af5',alert:'#d4a82d'}[type];
+    const mk=document.createElementNS('http://www.w3.org/2000/svg','marker');
+    mk.setAttribute('id',`arr-${type}`);mk.setAttribute('viewBox','0 0 10 7');
+    mk.setAttribute('refX','10');mk.setAttribute('refY','3.5');
+    mk.setAttribute('markerWidth','10');mk.setAttribute('markerHeight','8');
+    mk.setAttribute('orient','auto');
+    const p=document.createElementNS('http://www.w3.org/2000/svg','polygon');
+    p.setAttribute('points','0 0, 10 3.5, 0 7');p.setAttribute('fill',col);
+    mk.appendChild(p);defs.appendChild(mk);
+
+    // Glow filter
+    const fl=document.createElementNS('http://www.w3.org/2000/svg','filter');
+    fl.setAttribute('id',`glow-${type}`);fl.innerHTML=`<feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>`;
+    defs.appendChild(fl);
+  });
+  svg.appendChild(defs);
+
+  E.forEach((e,i)=>{
+    const fn=N.find(n=>n.id===e.f),tn=N.find(n=>n.id===e.t);
+    if(!fn||!tn)return;
+    const fv=fn.cat.includes(view),tv=tn.cat.includes(view);
+
+    const x1=fn.x+W, y1=fn.y+H/2;
+    const x2=tn.x, y2=tn.y+H/2;
+
+    // Build clean curved path (horizontal routing)
+    const mx=(x1+x2)/2;
+    const d=`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`;
+
+    const col={lead:'var(--red)',data:'var(--blue)',content:'var(--purple)',alert:'var(--gold)'}[e.type]||'var(--gray)';
+    const rawCol={lead:'#f55a5a',data:'#4a9eff',content:'#b07af5',alert:'#d4a82d'}[e.type]||'#6b7a90';
+
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',d);
+    path.setAttribute('stroke',col);
+    path.setAttribute('class','wire');
+    path.setAttribute('marker-end',`url(#arr-${e.type})`);
+    path.dataset.idx=i;
+    path.dataset.from=e.f;path.dataset.to=e.t;
+    if(!fv&&!tv)path.classList.add('dim');
+
+    // Hover for label
+    path.style.pointerEvents='stroke';path.style.cursor='pointer';
+    path.addEventListener('mouseenter',ev=>{
+      const wt=document.getElementById('wtip');
+      wt.textContent=e.label;
+      wt.style.left=ev.clientX+12+'px';wt.style.top=ev.clientY-20+'px';
+      wt.classList.add('show');
+      path.style.opacity='0.85';path.style.strokeWidth='4';
     });
-    canvas.appendChild(el);
-  });
-}
-
-function drawConnections() {
-  linesLayer.innerHTML = '';
-  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-  defs.innerHTML = `<filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>`;
-  linesLayer.appendChild(defs);
-
-  connections.forEach(conn => {
-    const fn = nodes.find(n => n.id === conn.from), tn = nodes.find(n => n.id === conn.to);
-    if (!fn || !tn) return;
-    const fv = fn.category.includes(activeView), tv = tn.category.includes(activeView);
-    if (!fv && !tv) return;
-
-    const x1 = fn.x + (fn.w||260)/2, y1 = fn.y + (fn.h||80)/2;
-    const x2 = tn.x + (tn.w||260)/2, y2 = tn.y + (tn.h||80)/2;
-    const mx=(x1+x2)/2, my=(y1+y2)/2, dx=x2-x1, dy=y2-y1;
-    const cx=mx-dy*0.15, cy=my+dx*0.15;
-    const d = `M ${x1} ${y1} Q ${cx} ${cy} ${x2} ${y2}`;
-
-    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    path.setAttribute('d', d);
-    path.setAttribute('class', `flow-line ${conn.color||''}`);
-    path.setAttribute('id', `conn-${conn.from}-${conn.to}`);
-    if (!fv || !tv) path.style.opacity = '0.05';
-    linesLayer.appendChild(path);
-
-    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    circle.setAttribute('r', '3');
-    circle.setAttribute('fill', getColor(conn.color));
-    circle.setAttribute('opacity', '0.6');
-    circle.setAttribute('filter', 'url(#glow)');
-    const am = document.createElementNS('http://www.w3.org/2000/svg', 'animateMotion');
-    am.setAttribute('dur', `${3+Math.random()*4}s`);
-    am.setAttribute('repeatCount', 'indefinite');
-    am.setAttribute('path', d);
-    if (!fv || !tv) circle.style.display = 'none';
-    circle.appendChild(am);
-    linesLayer.appendChild(circle);
-  });
-}
-
-function getColor(name) {
-  return { green:'#22c55e', blue:'#3b82f6', orange:'#f59e0b', purple:'#a855f7', red:'#ef4444', yellow:'#eab308' }[name] || '#6b7280';
-}
-
-// ══════════════════
-// DETAIL PANEL — FULL
-// ══════════════════
-function openDetail(n) {
-  const panel = document.getElementById('detailPanel');
-  const d = n.detail;
-
-  // Badge
-  const badgeColor = { Production:'background:#166534;color:#dcfce7', 'Active Dev':'background:#854d0e;color:#fef9c3', Development:'background:#1e3a5f;color:#bfdbfe', Parked:'background:#374151;color:#9ca3af', Archive:'background:#374151;color:#6b7280', Support:'background:#1e3a5f;color:#93c5fd' }[d.priority] || 'background:#374151;color:#9ca3af';
-  document.getElementById('detailBadge').innerHTML = `<span class="dp-badge" style="${badgeColor}">${d.priority}</span>`;
-  document.getElementById('detailTitle').textContent = n.title;
-  document.getElementById('detailSubtitle').textContent = n.subtitle;
-
-  let h = '';
-
-  // Overview
-  h += `<div class="ds"><h3>Overview</h3><p>${d.description}</p></div>`;
-
-  // Infrastructure
-  if (d.infra && d.infra.length) {
-    h += `<div class="ds"><h3>Infrastructure</h3>`;
-    d.infra.forEach(i => h += `<div class="kv"><span class="k">${i.k}</span><span class="v">${i.v}</span></div>`);
-    h += `</div>`;
-  }
-
-  // Agents
-  if (d.agents && d.agents.length) {
-    h += `<div class="ds"><h3>Agents (${d.agents.length})</h3>`;
-    d.agents.forEach(a => h += `<div class="item"><div class="item-dot" style="background:var(--orange)"></div><div><div class="item-title">${a.name}</div><div class="item-desc">${a.desc}</div></div></div>`);
-    h += `</div>`;
-  }
-
-  // Modules
-  if (d.modules && d.modules.length) {
-    h += `<div class="ds"><h3>Modules & Components (${d.modules.length})</h3><div style="display:flex;flex-wrap:wrap;gap:4px;">`;
-    d.modules.forEach(m => h += `<span class="tag stack">${m}</span>`);
-    h += `</div></div>`;
-  }
-
-  // File Structure
-  if (d.files) {
-    h += `<div class="ds"><h3>File Structure</h3><div class="file-tree">`;
-    d.files.items.forEach(f => {
-      const [path, ...desc] = f.split(' \u2014 ');
-      h += `<div><span class="highlight">${path}</span>${desc.length ? ` <span style="color:#6b7280">\u2014 ${desc.join(' \u2014 ')}</span>` : ''}</div>`;
+    path.addEventListener('mouseleave',()=>{
+      document.getElementById('wtip').classList.remove('show');
+      if(!path.classList.contains('hl')){path.style.opacity='';path.style.strokeWidth='';}
     });
-    h += `</div></div>`;
-  }
-
-  // Env Keys
-  if (d.envKeys && d.envKeys.length) {
-    h += `<div class="ds"><h3>Environment Variables (${d.envKeys.length})</h3><div class="env-list">`;
-    d.envKeys.forEach(k => h += `<span class="tag file">${k}</span>`);
-    h += `</div></div>`;
-  }
-
-  // Connections
-  if (d.connections && d.connections.length) {
-    h += `<div class="ds"><h3>Connections (${d.connections.length})</h3>`;
-    d.connections.forEach(c => h += `<div class="item"><div class="item-dot" style="background:var(--cyan)"></div><div style="font-size:12px">${c}</div></div>`);
-    h += `</div>`;
-  }
-
-  document.getElementById('detailBody').innerHTML = h;
-  panel.classList.add('open');
-}
-
-function closeDetail() { document.getElementById('detailPanel').classList.remove('open'); }
-
-// ══════════════════
-// PAN & ZOOM
-// ══════════════════
-function applyTransform() { canvas.style.transform = `translate(${pan.x}px,${pan.y}px) scale(${zoom})`; }
-
-container.addEventListener('mousedown', e => {
-  if (e.target.closest('.node')) return;
-  isDragging = true; container.classList.add('dragging');
-  dragStart = { x: e.clientX, y: e.clientY }; panStart = { ...pan };
-});
-window.addEventListener('mousemove', e => {
-  if (!isDragging) return;
-  pan.x = panStart.x + (e.clientX - dragStart.x);
-  pan.y = panStart.y + (e.clientY - dragStart.y);
-  applyTransform();
-});
-window.addEventListener('mouseup', () => { isDragging = false; container.classList.remove('dragging'); });
-
-container.addEventListener('wheel', e => {
-  e.preventDefault();
-  const d = e.deltaY > 0 ? 0.92 : 1.08;
-  const nz = Math.min(2, Math.max(0.15, zoom * d));
-  const r = container.getBoundingClientRect();
-  const mx = e.clientX - r.left, my = e.clientY - r.top;
-  pan.x = mx - (mx - pan.x) * (nz / zoom);
-  pan.y = my - (my - pan.y) * (nz / zoom);
-  zoom = nz; applyTransform(); showZoom();
-}, { passive: false });
-
-function showZoom() {
-  const el = document.getElementById('zoomIndicator');
-  el.textContent = `${Math.round(zoom*100)}%`;
-  el.classList.add('visible');
-  clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('visible'), 1200);
-}
-
-// ══════════════════
-// CONTROLS
-// ══════════════════
-function fitView() {
-  const r = container.getBoundingClientRect(), p = 80;
-  let x1=Infinity, y1=Infinity, x2=-Infinity, y2=-Infinity;
-  nodes.forEach(n => {
-    if (!n.category.includes(activeView)) return;
-    x1=Math.min(x1,n.x); y1=Math.min(y1,n.y);
-    x2=Math.max(x2,n.x+(n.w||260)); y2=Math.max(y2,n.y+(n.h||80));
-  });
-  const cw=x2-x1+p*2, ch=y2-y1+p*2;
-  zoom = Math.min(r.width/cw, r.height/ch, 1);
-  pan.x = (r.width-cw*zoom)/2-x1*zoom+p*zoom;
-  pan.y = (r.height-ch*zoom)/2-y1*zoom+p*zoom;
-  applyTransform();
-}
-
-document.getElementById('btnFit').addEventListener('click', fitView);
-
-// Fullscreen
-document.getElementById('btnFullscreen').addEventListener('click', toggleFullscreen);
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().catch(() => {});
-    toast('Entered fullscreen \u2014 press Esc or Ctrl+Shift+F to exit');
-  } else {
-    document.exitFullscreen();
-  }
-}
-document.addEventListener('fullscreenchange', () => {
-  const btn = document.getElementById('btnFullscreen');
-  if (document.fullscreenElement) {
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" y1="10" x2="21" y2="3"/><line x1="3" y1="21" x2="10" y2="14"/></svg>Exit';
-  } else {
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>Fullscreen';
-  }
-  setTimeout(fitView, 100);
-});
-
-// PDF Export
-document.getElementById('btnPDF').addEventListener('click', exportPDF);
-function exportPDF() {
-  buildPrintView();
-  toast('Opening print dialog \u2014 select "Save as PDF"');
-  setTimeout(() => window.print(), 300);
-}
-
-function buildPrintView() {
-  const pv = document.getElementById('printView');
-  const now = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
-  let h = `<h1>UAE Property Hub \u2014 Empire Ecosystem Map</h1>`;
-  h += `<div class="print-subtitle">Architecture & Systems Reference \u2014 Generated ${now}</div>`;
-
-  h += `<div class="print-stats">`;
-  h += `<div class="print-stat"><strong>20+</strong> Systems</div>`;
-  h += `<div class="print-stat"><strong>13,832+</strong> Properties</div>`;
-  h += `<div class="print-stat"><strong>65+</strong> Developers</div>`;
-  h += `<div class="print-stat"><strong>10</strong> MCC Agents</div>`;
-  h += `<div class="print-stat"><strong>4</strong> Clawd Agents</div>`;
-  h += `<div class="print-stat"><strong>5</strong> Databases</div>`;
-  h += `<div class="print-stat"><strong>3</strong> CF Workers</div>`;
-  h += `<div class="print-stat"><strong>4</strong> AI Engines</div>`;
-  h += `</div>`;
-
-  // Group nodes by category
-  const groups = [
-    { title: 'Central Hub', ids: ['empire-cc'] },
-    { title: 'Core Platform & Infrastructure', ids: ['uae-property-hub','aws-lightsail','postgresql','telegram'] },
-    { title: 'Cloudflare Workers', ids: ['empire-tracker','whatsapp-automation'] },
-    { title: 'WhatsApp Systems', ids: ['atlas2-whatsapp','atlas3-lead-agent'] },
-    { title: 'AI & Intelligence', ids: ['launch-interceptor','clawd','ottawa-dubai','groq'] },
-    { title: 'Marketing & Content', ids: ['mcc','dubai-social-videos','my-video-project'] },
-    { title: 'Side Businesses', ids: ['supplement-ecommerce','supplement-storefront'] },
-    { title: 'Support & Tools', ids: ['skills','realedata-review','observability'] },
-    { title: 'Archive', ids: ['archive'] },
-  ];
-
-  groups.forEach(g => {
-    h += `<h2>${g.title}</h2>`;
-    g.ids.forEach(id => {
-      const n = nodes.find(nd => nd.id === id);
-      if (!n) return;
-      const d = n.detail;
-      const sc = n.status === 'live' ? 'status-live' : n.status === 'dev' ? 'status-dev' : 'status-parked';
-      const sl = n.status === 'live' ? 'LIVE' : n.status === 'dev' ? 'IN DEV' : 'PARKED';
-
-      h += `<div class="print-node">`;
-      h += `<div class="print-node-header"><span class="print-node-icon">${n.icon}</span><div><div class="print-node-title">${n.title}</div><div class="print-node-sub">${n.subtitle}</div></div><span class="print-node-status ${sc}">${sl}</span></div>`;
-      h += `<div class="print-desc">${d.description}</div>`;
-
-      if (d.infra && d.infra.length) {
-        h += `<div class="print-kv-grid">`;
-        d.infra.forEach(i => h += `<div class="print-kv"><span class="print-k">${i.k}</span><span class="print-v">${i.v}</span></div>`);
-        h += `</div>`;
-      }
-
-      if (d.agents && d.agents.length) {
-        h += `<div style="margin-bottom:6px"><strong style="font-size:10px;color:#374151">Agents (${d.agents.length}):</strong></div>`;
-        d.agents.forEach(a => h += `<div class="print-agent"><strong>${a.name}</strong> \u2014 ${a.desc}</div>`);
-      }
-
-      if (d.modules && d.modules.length) {
-        h += `<div style="margin:6px 0 4px"><strong style="font-size:10px;color:#374151">Modules (${d.modules.length}):</strong></div>`;
-        h += `<div class="print-modules">${d.modules.map(m => `<span class="print-mod">${m}</span>`).join('')}</div>`;
-      }
-
-      if (d.connections && d.connections.length) {
-        h += `<div style="margin-top:6px"><strong style="font-size:10px;color:#374151">Connections:</strong></div>`;
-        d.connections.forEach(c => h += `<div class="print-conn">\u2022 ${c}</div>`);
-      }
-      h += `</div>`;
+    path.addEventListener('mousemove',ev=>{
+      const wt=document.getElementById('wtip');
+      wt.style.left=ev.clientX+12+'px';wt.style.top=ev.clientY-20+'px';
     });
+    svg.appendChild(path);
+
+    // Persistent wire label
+    const lbl=document.createElementNS('http://www.w3.org/2000/svg','text');
+    lbl.textContent=e.label;
+    lbl.setAttribute('fill',rawCol);
+    lbl.setAttribute('opacity','0.55');
+    lbl.setAttribute('font-size','9');
+    lbl.setAttribute('font-weight','600');
+    lbl.setAttribute('font-family','-apple-system,BlinkMacSystemFont,sans-serif');
+    // Position label at midpoint of the curve
+    const lx=(x1+x2)/2, ly=(y1+y2)/2-8;
+    lbl.setAttribute('x',lx);lbl.setAttribute('y',ly);
+    lbl.setAttribute('text-anchor','middle');
+    lbl.classList.add('wire-label');
+    if(!fv&&!tv)lbl.style.display='none';
+    svg.appendChild(lbl);
+
+    // Animated dot
+    const dot=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    dot.setAttribute('r','3.5');dot.setAttribute('fill',rawCol);dot.setAttribute('opacity','0.6');
+    const am=document.createElementNS('http://www.w3.org/2000/svg','animateMotion');
+    am.setAttribute('dur',`${2.5+Math.random()*3}s`);am.setAttribute('repeatCount','indefinite');am.setAttribute('path',d);
+    if(!fv&&!tv)dot.style.display='none';
+    dot.appendChild(am);svg.appendChild(dot);
   });
+  world.appendChild(svg);
 
-  h += `<div class="print-flows"><h2>Data Flows</h2>`;
-  const flows = [
-    'WhatsApp Lead \u2192 Atlas2 Bot processes (Groq AI) \u2192 CRM Integration \u2192 Empire CC event \u2192 UAE Property Hub',
-    'Visitor hits realedata.ai \u2192 Empire Tracker pixel scores behavior \u2192 Empire CC event \u2192 Telegram alert for high-intent',
-    'Launch Interceptor scrapes market \u2192 Detects new launch (Groq analysis) \u2192 Empire CC broadcast \u2192 All agents notified',
-    'MCC Agents create content \u2192 Post to social platforms \u2192 Leads captured \u2192 Empire CC \u2192 WhatsApp for qualification',
-    'Ottawa-Dubai monitors CAD/AED rates \u2192 Generates cross-border content \u2192 MCC distributes to all platforms',
-  ];
-  flows.forEach((f,i) => h += `<div class="print-flow"><span class="print-flow-num">${i+1}</span>${f}</div>`);
-  h += `</div>`;
+  // Cards
+  N.forEach(n=>{
+    const vis=n.cat.includes(view);
+    const d=document.createElement('div');
+    d.className=`card c-${n.c}`;
+    d.id=`c-${n.id}`;
+    d.style.cssText=`left:${n.x}px;top:${n.y}px;width:${W}px;height:${H}px;opacity:${vis?1:0.12};pointer-events:${vis?'auto':'none'}`;
+    if(selNode===n.id)d.classList.add('hl');
 
-  h += `<div class="print-footer">UAE Property Hub Empire Ecosystem \u2014 Dr. Siyamak Sasani \u2014 realedata.ai \u2014 ${now}</div>`;
+    const sc=n.s==='live'?'live':n.s==='dev'?'dev':'parked';
+    d.innerHTML=`<div class="card-inner"><div class="card-top"><div class="card-icon">${n.icon}</div><div style="flex:1;min-width:0"><div class="card-name">${n.title}</div><div class="card-sub">${n.sub}</div></div><div class="card-status ${sc}"></div></div><div class="card-stat"><span>${n.stat}</span></div></div>`;
 
-  pv.innerHTML = h;
+    d.addEventListener('click',e=>{e.stopPropagation();toggleSel(n.id)});
+    d.addEventListener('mouseenter',e=>showTip(e,n));
+    d.addEventListener('mouseleave',()=>hideTip());
+    d.addEventListener('mousemove',e=>{const t=document.getElementById('tip');t.style.left=e.clientX+16+'px';t.style.top=e.clientY+16+'px'});
+    d.addEventListener('dblclick',e=>{e.stopPropagation();openDP(n)});
+
+    world.appendChild(d);
+  });
 }
 
-// Help
-document.getElementById('btnHelp').addEventListener('click', toggleHelp);
-function toggleHelp() {
-  document.getElementById('shortcutsPanel').classList.toggle('show');
-  document.getElementById('overlay').classList.toggle('show');
+// ═══ SELECTION (click highlights connections) ═══
+function toggleSel(id){
+  if(selNode===id){selNode=null;clearHL();}
+  else{selNode=id;applyHL(id);}
+}
+function applyHL(id){
+  document.querySelectorAll('.card').forEach(c=>{
+    const nid=c.id.replace('c-','');
+    const connected=E.some(e=>(e.f===id&&e.t===nid)||(e.t===id&&e.f===nid))||nid===id;
+    c.classList.toggle('hl',nid===id);
+    c.classList.toggle('dim',!connected);
+  });
+  document.querySelectorAll('.wire').forEach(w=>{
+    const hit=w.dataset.from===id||w.dataset.to===id;
+    w.classList.toggle('hl',hit);w.classList.toggle('dim',!hit);
+  });
+}
+function clearHL(){
+  document.querySelectorAll('.card').forEach(c=>{c.classList.remove('hl','dim')});
+  document.querySelectorAll('.wire').forEach(w=>{w.classList.remove('hl','dim');w.style.opacity='';w.style.strokeWidth=''});
 }
 
-// View tabs
-document.querySelectorAll('.view-tab').forEach(tab => {
-  tab.addEventListener('click', () => {
-    document.querySelectorAll('.view-tab').forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    activeView = tab.dataset.view;
-    renderNodes(); drawConnections();
-  });
-});
-
-// Search
-document.getElementById('searchInput').addEventListener('input', e => {
-  const q = e.target.value.toLowerCase();
-  nodes.forEach(n => {
-    const el = document.getElementById(`node-${n.id}`);
-    if (!el) return;
-    const match = !q || n.title.toLowerCase().includes(q) || n.subtitle.toLowerCase().includes(q) ||
-      n.tags.some(t => t.toLowerCase().includes(q)) ||
-      (n.detail.modules && n.detail.modules.some(m => m.toLowerCase().includes(q)));
-    el.style.opacity = match ? '1' : '0.08';
-  });
-});
-
-// Legend & Flows toggles
-function toggleLegend() {
-  const el = document.getElementById('legend');
-  el.classList.toggle('collapsed');
-  document.getElementById('legendArrow').innerHTML = el.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+// ═══ TOOLTIP ═══
+function showTip(ev,n){
+  const t=document.getElementById('tip');
+  let h=`<strong>${n.icon} ${n.title}</strong>${n.detail.desc.slice(0,180)}${n.detail.desc.length>180?'...':''}`;
+  h+=`<div class="tip-tags">${n.tags.map(t=>`<span class="tt">${t}</span>`).join('')}</div>`;
+  t.innerHTML=h;
+  t.style.left=ev.clientX+16+'px';t.style.top=ev.clientY+16+'px';
+  t.classList.add('show');
 }
-function toggleFlows() {
-  const el = document.getElementById('flowPanel');
-  el.classList.toggle('collapsed');
-  document.getElementById('flowArrow').innerHTML = el.classList.contains('collapsed') ? '&#9654;' : '&#9660;';
+function hideTip(){document.getElementById('tip').classList.remove('show')}
+
+// ═══ DETAIL PANEL ═══
+function openDP(n){
+  const d=n.detail;
+  document.getElementById('dpTitle').textContent=n.title;
+  document.getElementById('dpSub').textContent=n.sub;
+  let h=`<div class="dp-sec"><h4>Overview</h4><p>${d.desc}</p></div>`;
+  if(d.infra?.length){h+=`<div class="dp-sec"><h4>Infrastructure</h4>`;d.infra.forEach(i=>h+=`<div class="dp-row"><span class="dk">${i.k}</span><span class="dv">${i.v}</span></div>`);h+=`</div>`}
+  if(d.agents?.length){h+=`<div class="dp-sec"><h4>Agents (${d.agents.length})</h4>`;d.agents.forEach(a=>h+=`<div class="dp-agent"><b>${a.n}</b> \u2014 ${a.d}</div>`);h+=`</div>`}
+  if(d.mods?.length){h+=`<div class="dp-sec"><h4>Modules (${d.mods.length})</h4><div style="display:flex;flex-wrap:wrap;gap:3px">`;d.mods.forEach(m=>h+=`<span class="dp-tag">${m}</span>`);h+=`</div></div>`}
+  if(d.conns?.length){h+=`<div class="dp-sec"><h4>Connections</h4>`;d.conns.forEach(c=>h+=`<div class="dp-conn">${c}</div>`);h+=`</div>`}
+  document.getElementById('dpBody').innerHTML=h;
+  document.getElementById('dp').classList.add('open');
 }
+document.getElementById('dpClose').addEventListener('click',()=>document.getElementById('dp').classList.remove('open'));
 
-// Flow highlighting
-document.querySelectorAll('.flow-item').forEach(item => {
-  item.addEventListener('mouseenter', () => {
-    const paths = {
-      '1': ['atlas2-whatsapp','empire-cc','uae-property-hub'],
-      '2': ['empire-tracker','empire-cc','telegram'],
-      '3': ['launch-interceptor','empire-cc','mcc'],
-      '4': ['mcc','empire-cc'],
-      '5': ['ottawa-dubai','mcc','empire-cc'],
-    }[item.dataset.flow] || [];
-
-    document.querySelectorAll('.flow-line').forEach(line => {
-      const id = line.id || '';
-      const hit = paths.some((nid,i) => i < paths.length-1 && (id.includes(nid) && id.includes(paths[i+1]))) ||
-                  paths.some((nid,i) => i > 0 && (id.includes(nid) && id.includes(paths[i-1])));
-      line.style.opacity = hit ? '0.9' : '0.05';
-      line.style.strokeWidth = hit ? '3' : '';
-    });
-    nodes.forEach(n => {
-      const el = document.getElementById(`node-${n.id}`);
-      if (!el) return;
-      if (paths.includes(n.id)) {
-        el.style.transform = 'translateY(-3px)'; el.style.zIndex = '30';
-        el.style.boxShadow = `0 0 30px ${getColor(n.color==='hub'?'blue':n.color)}40`;
-      } else el.style.opacity = '0.15';
-    });
-  });
-  item.addEventListener('mouseleave', () => {
-    document.querySelectorAll('.flow-line').forEach(l => { l.style.opacity = ''; l.style.strokeWidth = ''; });
-    nodes.forEach(n => {
-      const el = document.getElementById(`node-${n.id}`);
-      if (!el) return;
-      el.style.transform = ''; el.style.zIndex = ''; el.style.boxShadow = '';
-      el.style.opacity = n.category.includes(activeView) ? '1' : '0.15';
-    });
-  });
-});
-
-// Click outside
-container.addEventListener('click', e => {
-  if (!e.target.closest('.node')) { expandedNode = null; renderNodes(); drawConnections(); closeDetail(); }
-});
+// ═══ PAN & ZOOM ═══
+function tf(){world.style.transform=`translate(${pan.x}px,${pan.y}px) scale(${zoom})`}
+vp.addEventListener('mousedown',e=>{if(e.target.closest('.card'))return;dragging=true;vp.classList.add('dragging');ds={x:e.clientX,y:e.clientY};ps={...pan}});
+window.addEventListener('mousemove',e=>{if(!dragging)return;pan.x=ps.x+(e.clientX-ds.x);pan.y=ps.y+(e.clientY-ds.y);tf()});
+window.addEventListener('mouseup',()=>{dragging=false;vp.classList.remove('dragging')});
+vp.addEventListener('wheel',e=>{e.preventDefault();const d=e.deltaY>0?0.92:1.08;const nz=Math.min(2.5,Math.max(0.3,zoom*d));const r=vp.getBoundingClientRect();const mx=e.clientX-r.left,my=e.clientY-r.top;pan.x=mx-(mx-pan.x)*(nz/zoom);pan.y=my-(my-pan.y)*(nz/zoom);zoom=nz;tf();showZoom()},{passive:false});
+function showZoom(){const z=document.getElementById('zi');z.textContent=Math.round(zoom*100)+'%';z.classList.add('show');clearTimeout(z._t);z._t=setTimeout(()=>z.classList.remove('show'),1000)}
 
 // Touch
-let tsd = 0, tsz = 0;
-container.addEventListener('touchstart', e => {
-  if (e.touches.length === 2) { tsd = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY); tsz = zoom; }
-  else if (e.touches.length === 1) { isDragging = true; dragStart = {x:e.touches[0].clientX,y:e.touches[0].clientY}; panStart = {...pan}; }
-}, {passive:true});
-container.addEventListener('touchmove', e => {
-  if (e.touches.length === 2) { const d = Math.hypot(e.touches[0].clientX-e.touches[1].clientX, e.touches[0].clientY-e.touches[1].clientY); zoom = Math.min(2,Math.max(0.15,tsz*(d/tsd))); applyTransform(); }
-  else if (isDragging && e.touches.length===1) { pan.x=panStart.x+(e.touches[0].clientX-dragStart.x); pan.y=panStart.y+(e.touches[0].clientY-dragStart.y); applyTransform(); }
-}, {passive:true});
-container.addEventListener('touchend', () => { isDragging = false; });
+let td=0,tz=0;
+vp.addEventListener('touchstart',e=>{if(e.touches.length===2){td=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);tz=zoom}else if(e.touches.length===1){dragging=true;ds={x:e.touches[0].clientX,y:e.touches[0].clientY};ps={...pan}}},{passive:true});
+vp.addEventListener('touchmove',e=>{if(e.touches.length===2){const d=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);zoom=Math.min(2.5,Math.max(0.3,tz*(d/td)));tf()}else if(dragging&&e.touches.length===1){pan.x=ps.x+(e.touches[0].clientX-ds.x);pan.y=ps.y+(e.touches[0].clientY-ds.y);tf()}},{passive:true});
+vp.addEventListener('touchend',()=>{dragging=false});
 
-// Keyboard shortcuts
-document.addEventListener('keydown', e => {
-  if (e.target.tagName === 'INPUT') return;
-  if (e.key === 'f' && !e.ctrlKey && !e.metaKey) { e.preventDefault(); fitView(); }
-  if (e.key === 'F' && (e.ctrlKey || e.metaKey) && e.shiftKey) { e.preventDefault(); toggleFullscreen(); }
-  if (e.key === '?') toggleHelp();
-  if (e.key === '/') { e.preventDefault(); document.getElementById('searchInput').focus(); }
-  if (e.key === 'Escape') { closeDetail(); expandedNode=null; renderNodes(); drawConnections(); if(document.getElementById('shortcutsPanel').classList.contains('show')) toggleHelp(); }
-  if (e.key === '=' || e.key === '+') { zoom = Math.min(2, zoom * 1.15); applyTransform(); showZoom(); }
-  if (e.key === '-') { zoom = Math.max(0.15, zoom * 0.85); applyTransform(); showZoom(); }
+// Click outside
+vp.addEventListener('click',e=>{if(!e.target.closest('.card')){selNode=null;clearHL();document.getElementById('dp').classList.remove('open')}});
+
+// ═══ FIT ═══
+function fit(){
+  const r=vp.getBoundingClientRect(),p=60;
+  // Reserve space for fixed overlay panels (legend bottom-left, flows bottom-right)
+  const panelH=280;
+  let x1=Infinity,y1=Infinity,x2=-Infinity,y2=-Infinity;
+  N.forEach(n=>{if(!n.cat.includes(view))return;x1=Math.min(x1,n.x);y1=Math.min(y1,n.y);x2=Math.max(x2,n.x+W);y2=Math.max(y2,n.y+H)});
+  Z.forEach(z=>{x1=Math.min(x1,z.x);y1=Math.min(y1,z.y);x2=Math.max(x2,z.x+z.w);y2=Math.max(y2,z.y+z.h+30)});
+  const cw=x2-x1+p*2,ch=y2-y1+p*2;
+  const availH=r.height-panelH;
+  zoom=Math.min(r.width/cw,availH/ch,1.2);
+  pan.x=(r.width-cw*zoom)/2-x1*zoom+p*zoom;
+  pan.y=(availH-ch*zoom)/2-y1*zoom+p*zoom;
+  tf();
+}
+document.getElementById('fitBtn').addEventListener('click',fit);
+
+// Fullscreen
+document.getElementById('fsBtn').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen().then(()=>setTimeout(fit,100));else document.exitFullscreen()});
+
+// PDF
+document.getElementById('pdfBtn').addEventListener('click',()=>{window.print()});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');view=t.dataset.v;render();setTimeout(fit,50)}));
+
+// Search
+document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase();N.forEach(n=>{const el=document.getElementById(`c-${n.id}`);if(!el)return;const m=!q||n.title.toLowerCase().includes(q)||n.sub.toLowerCase().includes(q)||n.tags.some(t=>t.toLowerCase().includes(q));el.style.opacity=m?'1':'0.08'})});
+
+// Legend toggle
+document.getElementById('legHead').addEventListener('click',()=>{const l=document.getElementById('legend');l.classList.toggle('shut');document.getElementById('lArr').innerHTML=l.classList.contains('shut')?'&#9654;':'&#9660;'});
+// Flows toggle
+document.getElementById('flowsHead').addEventListener('click',()=>{const f=document.getElementById('flows');f.classList.toggle('shut');document.getElementById('fArr').innerHTML=f.classList.contains('shut')?'&#9654;':'&#9660;'});
+
+// Flow hover
+document.querySelectorAll('.fi').forEach(fi=>{
+  fi.addEventListener('mouseenter',()=>{
+    const path=FLOWS[fi.dataset.f]||[];
+    document.querySelectorAll('.card').forEach(c=>{const id=c.id.replace('c-','');c.classList.toggle('dim',!path.includes(id))});
+    document.querySelectorAll('.wire').forEach(w=>{
+      const hit=path.some((id,i)=>i<path.length-1&&((w.dataset.from===id&&w.dataset.to===path[i+1])||(w.dataset.to===id&&w.dataset.from===path[i+1])));
+      w.classList.toggle('hl',hit);w.classList.toggle('dim',!hit);
+    });
+  });
+  fi.addEventListener('mouseleave',()=>{if(!selNode)clearHL();else applyHL(selNode)});
 });
 
-// Toast
-function toast(msg) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 2500);
-}
+// Keyboard
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT')return;if(e.key==='f')fit();if(e.key==='Escape'){selNode=null;clearHL();document.getElementById('dp').classList.remove('open')}if(e.key==='/')e.preventDefault(),document.getElementById('search').focus()});
 
-// ══════════════════
-// INIT
-// ══════════════════
-renderNodes();
-drawConnections();
-buildPrintView();
-setTimeout(fitView, 100);
-window.addEventListener('resize', () => setTimeout(fitView, 50));
+// ═══ INIT ═══
+render();
+setTimeout(fit,80);
+window.addEventListener('resize',()=>setTimeout(fit,50));
 </script>
 </body>
 </html>
